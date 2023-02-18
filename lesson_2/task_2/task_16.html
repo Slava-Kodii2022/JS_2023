@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_16</title>
+</head>
+
+<body>
+	<h1>Задача №16</h1>
+
+	<p>
+		16. З клавіатури вводиться номер місяця. Визначити, який буде місяць через вказану кількість N місяців.
+	</p>
+
+	<script>
+		// вводимо данні
+		let numberMonth = parseInt(prompt('Введіть номер місяця (від 1 до 12):', '1-12'));
+		let quantityMonth = parseInt(prompt('Введіть кількість місяців:', '0'));
+
+		const MIN_MONTH = 1;
+		const MAX_MONTH = 12;
+
+		// обчислення
+		let numberMonthUser = (numberMonth - MIN_MONTH + quantityMonth) % MAX_MONTH + MIN_MONTH;
+
+		// виводимо результат
+		document.write(`
+		номер місяця (від 1 до 12): ${numberMonth} <br>
+		кількість місяців: ${quantityMonth} <br>
+		буде місяць: ${numberMonthUser} <br>
+		`);
+
+	</script>
+</body>
+
+</html>

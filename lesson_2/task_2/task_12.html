@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_12</title>
+</head>
+
+<body>
+	<h1>Задача №12</h1>
+
+	<p>
+		12. З клавіатури вводиться кількість монет номіналом 2 копійки (5коп, 25коп, 50 коп).
+		Визначити скільки гривень і копійок є у даній сумі.
+	</p>
+
+	<script>
+		// вводимо данні
+		let numberOfCoins2 = parseInt(prompt('Введіть кількість монет номіналом 2коп:', '2'));
+		let numberOfCoins5 = parseInt(prompt('Введіть кількість монет номіналом 5коп:', '5'));
+		let numberOfCoins25 = parseInt(prompt('Введіть кількість монет номіналом 25коп:', '25'));
+		let numberOfCoins50 = parseInt(prompt('Введіть кількість монет номіналом 50коп:', '50'));
+
+		const IN_ONE_HRYVNIA = 100;
+		const coin2 = 2;
+		const coin5 = 5;
+		const coin25 = 25;
+		const coin50 = 50;
+
+		// обчислення
+		let together = coin2 * numberOfCoins2 + coin5 * numberOfCoins5 + coin25 * numberOfCoins25 + coin50 * numberOfCoins50;
+		let many = parseInt(together / IN_ONE_HRYVNIA);
+		let penny = parseInt(together % IN_ONE_HRYVNIA);
+
+		// виводимо результат
+		document.write(`
+		кількість монет номіналом 2 копійки: ${numberOfCoins2} <br>
+		кількість монет номіналом 5 копійки: ${numberOfCoins5} <br>
+		кількість монет номіналом 25 копійки: ${numberOfCoins25} <br>
+		кількість монет номіналом 50 копійки: ${numberOfCoins50} <br>
+		у даній сумі:<br>
+		${many} гривень ${penny} копійок <br>
+		`);
+
+	</script>
+</body>
+
+</html>

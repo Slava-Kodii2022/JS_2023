@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_8</title>
+</head>
+
+<body>
+	<h1>Задача №8</h1>
+
+	<p>
+		8. Розробити програму (не використовувати if), яка за номером року Y
+		визначає номер століття C (врахувати, що початком XX століття був 1901, а не 1900 рік).
+	</p>
+
+	<script>
+		// вводимо данні
+		let year = parseInt(prompt('Введіть рік:', '0000'));
+		const PART_YEAR = 100;
+
+		// обчислення
+		let century = Math.ceil(year / PART_YEAR);
+
+		// виводимо результат
+		document.write(`
+		номер року Y: ${year} <br>
+		номер століття C: ${century} <br>
+		`);
+
+	</script>
+</body>
+
+</html>

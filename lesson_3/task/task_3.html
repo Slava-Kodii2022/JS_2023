@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<body>
+	<h1>Задача №3</h1>
+
+	<p>
+		3. Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+		// вводимо данні
+		let randomNumber = Math.floor(1 + Math.random() * 5)
+		let userNumber = parseInt(prompt('Введіть число за 2 спроби:', '1-5'))
+
+		// обчислення, виводимо результат
+		if (userNumber === randomNumber) {
+			document.write('Вірно!')
+		}
+		else {
+			userNumber = parseInt(prompt('Не вірно, друга спроба:', '1-5'))
+			if (userNumber === randomNumber) {
+				document.write('Вірно!')
+			}
+			else {
+				document.write('Не вгадали.')
+			}
+		}
+
+	</script>
+</body>
+
+</html>

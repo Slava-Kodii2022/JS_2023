@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<body>
+	<h1>Задача №3</h1>
+
+	<p>
+		3. З клавіатури вводяться вартість одиниці та кількість одиниць двох товарів.
+		Вивести на екран вартість кожного з видів товарів окремо і загальну вартість
+	</p>
+
+	<script>
+		// вводимо данні
+		let firstItemPrice = parseFloat(prompt('Введіть вартість товару №1:', '0'));
+		let firstItemQuantity = parseInt(prompt('Введіть кількість одиниць товару №1:', '0'));
+		let secondItemPrice = parseFloat(prompt('Введіть вартість товару №2:', '0'));
+		let secondItemQuantity = parseInt(prompt('Введіть кількість одиниць товару №2:', '0'));
+
+		// обчислення
+		let firstItemTotal = firstItemPrice * firstItemQuantity;
+		let secondItemTotal = secondItemPrice * secondItemQuantity;
+		let totalPrice = firstItemTotal + secondItemTotal;
+
+		// виводимо результат
+		document.write(`
+		<table border="3px">
+				<tr>
+					<th>товар</th>
+					<th>вартість товару</th>
+					<th>кількість одиниць</th>
+					<th>сума товару</th>
+				</tr>
+				<tr>
+					<th>№1</th>
+					<th>${firstItemPrice.toFixed(2)}</th>
+					<th>${firstItemQuantity}</th>
+					<th>${firstItemTotal.toFixed(2)}</th>
+				</tr>
+				<tr>
+					<th>№2</th>
+					<th>${secondItemPrice.toFixed(2)}</th>
+					<th>${secondItemQuantity}</th>
+					<th>${secondItemTotal.toFixed(2)}</th>
+				</tr>
+				<tr>
+					<th>-</th>
+					<th>-</th>
+					<th>загальнa вартість</th>
+					<th>${totalPrice.toFixed(2)}</th>
+				</tr>
+		`);
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_6</title>
+</head>
+
+<body>
+	<h1>Задача №6</h1>
+
+	<p>
+		З клавіатури вводяться вартість товару та кількість одиниць 3 товарів.
+		Обчислити вартість кожного товару окремо та загальну вартість.
+		Вивести чек (як у супермаркеті) використовуючи елементи розмітки.
+	</p>
+
+	<script>
+		// вводимо данні
+		let firstItemPrice = parseFloat(prompt('Введіть вартість товару №1:', '0'));
+		let firstItemQuantity = parseInt(prompt('Введіть кількість одиниць товару №1:', '0'));
+		let secondItemPrice = parseFloat(prompt('Введіть вартість товару №2:', '0'));
+		let secondItemQuantity = parseInt(prompt('Введіть кількість одиниць товару №2:', '0'));
+		let thirdItemPrice = parseFloat(prompt('Введіть вартість товару №3:', '0'));
+		let thirdItemQuantity = parseInt(prompt('Введіть кількість одиниць товару №3:', '0'));
+
+		// обчислення
+		let firstItemTotal = firstItemPrice * firstItemQuantity;
+		let secondItemTotal = secondItemPrice * secondItemQuantity;
+		let thirdItemTotal = thirdItemPrice * thirdItemQuantity;
+		let totalPrice = firstItemTotal + secondItemTotal + thirdItemTotal;
+
+		// виводимо результат
+		document.write(`
+		<table border="3px">
+				<tr>
+					<th>товар</th>
+					<th>вартість товару</th>
+					<th>кількість одиниць</th>
+					<th>сума товару</th>
+				</tr>
+				<tr>
+					<th>№1</th>
+					<th>${firstItemPrice.toFixed(2)}</th>
+					<th>${firstItemQuantity}</th>
+					<th>${firstItemTotal.toFixed(2)}</th>
+				</tr>
+				<tr>
+					<th>№2</th>
+					<th>${secondItemPrice.toFixed(2)}</th>
+					<th>${secondItemQuantity}</th>
+					<th>${secondItemTotal.toFixed(2)}</th>
+				</tr>
+				<tr>
+					<th>№3</th>
+					<th>${thirdItemPrice.toFixed(2)}</th>
+					<th>${thirdItemQuantity}</th>
+					<th>${thirdItemTotal.toFixed(2)}</th>
+				</tr>
+				<tr>
+					<th>-</th>
+					<th>-</th>
+					<th>загальнa вартість</th>
+					<th>${totalPrice.toFixed(2)}</th>
+				</tr>
+		`);
+
+
+	</script>
+</body>
+
+</html>

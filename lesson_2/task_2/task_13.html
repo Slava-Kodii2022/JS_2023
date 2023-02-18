@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_13</title>
+</head>
+
+<body>
+	<h1>Задача №13</h1>
+
+	<p>
+		13.Визначити скільки повних тижнів є у вказаній кількості днів.
+	</p>
+
+	<script>
+		// вводимо данні
+		let quantityDay = parseInt(prompt('Введіть кількість днів:', '0'));
+
+		const IN_ONE_WEEK = 7;
+
+		// обчислення
+		let fullWeeks = parseInt(quantityDay / IN_ONE_WEEK);
+
+		// виводимо результат
+		document.write(`
+		кількість днів: ${quantityDay} <br>
+		повних тижнів: ${fullWeeks} <br>
+		`);
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Дано ширину екрана та кількість елементів, які повинні бути відображені у рядку.
+		Визначити ширину елементів, які повинні бути відображені у цьому рядку.
+	</p>
+
+	<script>
+		// вводимо данні
+		let screenWidth = parseFloat(prompt('Введіть ширину екрана:', '0'));
+		let elements = parseFloat(prompt('Введіть кількість елементів:', '0'));
+
+		// обчислення
+		let elementWidth = screenWidth / elements;
+
+		// виводимо результат
+		document.write(`ширинa екрана: ${screenWidth} <br>
+		кількість елементів: ${elements} <br>
+		ширинa елементів: ${elementWidth} <br>
+		`);
+	</script>
+
+</body>
+
+</html>

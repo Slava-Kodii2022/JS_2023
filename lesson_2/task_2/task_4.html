@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+
+<body>
+	<h1>Задача №4</h1>
+
+	<p>
+		4. З клавіатури вводиться вік дитини. Вивести на екран через скільки років вона буде відвідувати
+		садочок, піде у школу, закінчить школу, вступить і закінчить
+	</p>
+
+	<script>
+		// вводимо данні
+		let childsAge = parseFloat(prompt('Введіть вік дитини:', '0'));
+
+		const KINDERGARTE_START = 3;
+		const SCHOOL_START = 7;
+		const SCHOOL_END = 18;
+		const UNIVERSITY_START = 19;
+		const UNIVERSITY_END = 24;
+
+		// обчислення
+		let afterYearsKindergarteStart = KINDERGARTE_START - childsAge;
+		let afterYearsSchoolStart = SCHOOL_START - childsAge;
+		let afterYearsSchoolEnd = SCHOOL_END - childsAge;
+		let afterYearsUniversityStart = UNIVERSITY_START - childsAge;
+		let afterYearsUniversityEnd = UNIVERSITY_END - childsAge;
+
+		// виводимо результат
+		document.write(`вік дитини: ${childsAge} років <br>
+		буде відвідувати садочок через: ${afterYearsKindergarteStart} років <br>
+		піде у школу через: ${afterYearsSchoolStart} років <br>
+		закінчить школу через: ${afterYearsSchoolEnd} років <br>
+		вступить у університет через: ${afterYearsUniversityStart} років <br>
+		закінчить університет через: ${afterYearsUniversityEnd} років <br>
+		`);
+
+
+	</script>
+</body>
+
+</html>

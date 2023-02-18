@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_6</title>
+</head>
+
+<body>
+	<h1>Задача №6</h1>
+
+	<p>
+		6. Дано три дійсні змінні a, b і c. Скласти алгоритм, який міняє місцями
+		значення цих змінних наступним чином: <br> змінна a набуває значення змінної b,
+		змінна b набуває значення змінної c, а змінна c – попереднє значення змінної a.
+	</p>
+
+	<script>
+		// вводимо данні
+		let a = parseFloat(prompt('Введіть дійсну змінну a:', '0'));
+		let b = parseFloat(prompt('Введіть дійсну змінну b:', '0'));
+		let c = parseFloat(prompt('Введіть дійсну змінну c:', '0'));
+
+
+		// виводимо результат
+		document.write(`
+		значення змінної: <br>
+		a = ${a} <br>
+		b = ${b} <br>
+		c = ${c} <br>
+		`);
+
+		// обчислення
+		let previousValue = a
+
+		a = b
+		b = c
+		c = previousValue
+
+		// виводимо результат
+		document.write(`
+		НОВІ значення змінної: <br>
+		a = ${a} <br>
+		b = ${b} <br>
+		c = ${c} <br>
+		`);
+
+	</script>
+</body>
+
+</html>

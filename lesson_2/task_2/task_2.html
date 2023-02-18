@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<body>
+	<h1>Задача №2</h1>
+
+	<p>
+		2. З клавіатури вводиться розмір заробітної плати та розмір прожиткового мінімуму.
+		Визначити розмір соціальної допомоги (ввжаємо, що заробітна плата є меншою).
+	</p>
+
+	<script>
+		// вводимо данні
+		let salary = parseInt(prompt('Введіть розмір заробітної плати:', '0'));
+		let minimum = parseInt(prompt('Введіть розмір прожиткового мінімуму:', '0'));
+
+		// обчислення
+		let help = minimum - salary;
+
+		// виводимо результат
+		document.write(`розмір заробітної плати: ${salary} <br>
+		розмір прожиткового мінімуму: ${minimum} <br>
+		розмір соціальної допомоги: ${help} <br>
+		`);
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_7</title>
+</head>
+
+<body>
+	<h1>Задача №7</h1>
+
+	<p>
+		7. З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+		// вводимо данні
+		const monthNomber = parseInt(prompt('Введіть номер місяця від 1 до 12', '1-12')),
+			January = 1,
+			February = 2,
+			March = 3,
+			April = 4,
+			May = 5,
+			June = 6,
+			July = 7,
+			August = 8,
+			September = 9,
+			October = 10,
+			November = 11,
+			December = 12
+
+		// обчислення, виводимо результат
+		if ((monthNomber === December) || (monthNomber === January) || (monthNomber === February)) {
+			document.write('Пора року зима.')
+		}
+		else if ((monthNomber === March) || (monthNomber === April) || (monthNomber === May)) {
+			document.write('Пора року весна.')
+		}
+		else if ((monthNomber === June) || (monthNomber === July) || (monthNomber === August)) {
+			document.write('Пора року літо.')
+		}
+		else if ((monthNomber === September) || (monthNomber === October) || (monthNomber === November)) {
+			document.write('Пора року осінь.')
+		}
+		else {
+			document.write('Минув майже рік')
+		}
+
+	</script>
+</body>
+
+</html>

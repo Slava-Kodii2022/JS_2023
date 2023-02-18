@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_11</title>
+</head>
+
+<body>
+	<h1>Задача №11</h1>
+
+	<p>
+		11. Дано поточну кількість годи, хвилин, секунд (як на годиннику).<br>
+		Визначити:<br>
+		1) яка кількість секунд буде на годиннику через N секунд<br>
+		2) яка кількість хвилин буде на годиннику через N секунд, X хвилин.
+	</p>
+
+	<script>
+		// вводимо данні
+		let quantitySecond = parseInt(prompt('Введіть скільки секунд:', '0'));
+		let quantityMinute = parseInt(prompt('Введіть скільки хвилин:', '0'));
+
+		let hours = new Date().getHours();
+		let minutes = new Date().getMinutes();
+		let seconds = new Date().getSeconds();
+
+		const MINUTE_IN_SECOND = 60;
+
+		// обчислення
+		let numberSecondsAfter = (seconds + quantitySecond) % (MINUTE_IN_SECOND);
+		let numberMinutesAfter = (Math.floor((quantitySecond + seconds) / MINUTE_IN_SECOND) + quantityMinute + minutes) % MINUTE_IN_SECOND;
+
+
+		// виводимо результат
+		document.write(`
+		1) яка кількість секунд буде на годиннику через: ${quantitySecond} секунд <br>
+		2) яка кількість секунд буде на годиннику через: ${quantitySecond} секунд ${quantityMinute} хвилин<br>
+		початковий час: ${hours} годин : ${minutes} хвилин : ${seconds} : секунд <br>
+		на годиннику буде: ${numberSecondsAfter} секунд <br> 
+		на годиннику буде: ${numberMinutesAfter} хвилин <br> 
+		`);
+
+	</script>
+</body>
+
+</html>
