@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_6</title>
+</head>
+
+<body>
+	<h1>Задача №6</h1>
+
+	<p>
+		6. Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<style>
+		table {
+			border: 2px solid rgb(54, 53, 53);
+			display: inline-block;
+			margin-right: 50px
+		}
+
+		td {
+			border: 1.1px solid rgb(54, 53, 53);
+		}
+	</style>
+
+	<script>
+
+		let tableSize = 0
+		for (let t = 0; t < 3; t++) {
+			document.write(`<table>`)
+
+			//row
+			for (let i = 0; i < 3; i++) {
+				document.write(`<tr>`)
+				//column
+				for (let j = 0; j < 3; j++) {
+					document.write(`<td>${++tableSize}</td>`)
+				}
+				document.write(`</tr>`)
+			}
+			document.write(`</table>`)
+		}
+
+	</script>
+</body>
+
+</html>

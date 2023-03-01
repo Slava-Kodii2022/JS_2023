@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_11</title>
+</head>
+
+<body>
+	<h1>Задача №11</h1>
+
+	<p>
+		11. Знайти суму 5 непарних чисел, що знаходяться між заданими користувачем числами.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const startRange = parseInt(prompt(`Вкажіть початок діапазону:`, `0`))
+		const endRange = parseInt(prompt(`Вкажіть кінець діапазону:`, `0`))
+		let userNumber = 0
+		let sumOddNumbers = 0
+
+		for (let i = startRange; i < endRange && sumOddNumbers < 5; i++) {
+			if (i % 2 !== 0) {
+				userNumber += i
+				sumOddNumbers++
+				console.log(userNumber);
+			}
+		}
+		document.write(`Cума п'яти непарних чисел між ${startRange} i ${endRange} буде = ${userNumber}`)
+
+	</script>
+</body>
+
+</html>

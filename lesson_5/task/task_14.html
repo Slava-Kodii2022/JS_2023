@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_14</title>
+</head>
+
+<body>
+
+	<h1>Задача №14</h1>
+
+	<p>
+		14. Каса. Користувачу повідомляють суму, яку йому треба сплатити. <br>
+		Користувач поступово вводить суму грошей до тих пір, <br>
+		поки суми не буде достатньо для оплати товарів <br>
+		(кожного разу користувачу повідомляють, яку ще суму потрібно ввести).
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		let balanseSum = parseInt(prompt(`Повідомте користувачу сумму яку йому треба сплатити:`, `0`));
+
+		do {
+			const userMoney = parseInt(
+				prompt(
+					`До сплати ${balanseSum} грошей. Внесіть кошти для здійснення оплати.`,
+				),
+			);
+
+			if (userMoney <= balanseSum) {
+				alert(`Внесено ${userMoney} грошей`);
+				balanseSum -= userMoney;
+			} else {
+				alert(`Ще залишилось сплатити ${balanseSum} грошей`);
+			}
+		} while (balanseSum > 0);
+		document.write(`Ви сплатили всю суму.`);
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_9</title>
+</head>
+
+<body>
+	<h1>Задача №9</h1>
+
+	<p>
+		9. Користувач загадує число. Комп’ютер задає питання поки не вгадає число користувача (використати confirm).
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const startRange = parseInt(prompt(`Введіть початок діапазону:`, `0`))
+		const endRange = parseInt(prompt(`Введіть кінець діапазону:`, `0`))
+		let i = 0
+		let userNumber
+
+		do {
+			const randomNumber = startRange + Math.floor(Math.random() * (endRange - startRange + 1))
+			userNumber = confirm(`Число ${randomNumber} ?`)
+			i++
+		}
+		while (userNumber !== true)
+
+	</script>
+</body>
+
+</html>
