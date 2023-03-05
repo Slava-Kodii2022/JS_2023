@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<body>
+	<h1>Задача №5</h1>
+
+	<p>
+		5. Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: <br>
+		кількість парних, кількість додатних, кількість більших за 100.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const userNumber1 = parseFloat(prompt("Введіть перше число", "1"))
+		userNumber2 = parseFloat(prompt("Введіть друге число", "2"))
+		userNumber3 = parseFloat(prompt("Введіть третє число", "3"))
+
+		function getUserNumber() {
+			let evenNumber = 0,
+				positiveNumber = 0,
+				numberGreater100 = 0
+
+			for (let i = 0; i < 3; i++) {
+				if (arguments[i] % 2 === 0) evenNumber++
+				if (arguments[i] > 0) positiveNumber++
+				if (arguments[i] > 100) numberGreater100++
+			}
+
+			const result = `Числа користувача: ${userNumber1}, ${userNumber2}, ${userNumber3}</br>
+								Кількість парних чисел: ${evenNumber}</br>
+       						Кількість додатних чисел: ${positiveNumber}</br>
+        						Кількість чисел більших за 100: ${numberGreater100}`
+
+			return result
+		}
+
+		const numData = getUserNumber(userNumber1, userNumber2, userNumber3)
+
+		document.write(numData)
+
+	</script>
+
+</body>
+
+</html>

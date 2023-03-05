@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_6</title>
+</head>
+
+<body>
+	<h1>Задача №6</h1>
+
+	<p>
+		6. Створити окремі функції, які переводять:<br>
+		1) Сантиметри у дюйми;<br>
+		2) Кілограми у фунти;<br>
+		3) Кілометри у милі.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function getCentimetersInches(num) {
+			const centimetersInches = 0.3937
+			return num * centimetersInches
+		}
+
+		function getKilogramsPounds(num) {
+			const kilogramsPounds = 2.20
+			return num * kilogramsPounds
+		}
+
+		function getKilometersMiles(num) {
+			const kilometersMiles = 0.6214
+
+			return num * kilometersMiles
+		}
+
+		const userNumder = parseFloat(
+			prompt('Введіть число яке потрібно перевести:', '0')
+		),
+			inches = getCentimetersInches(userNumder).toFixed(2),
+			pounds = getKilogramsPounds(userNumder).toFixed(2),
+			miles = getKilometersMiles(userNumder).toFixed(2)
+
+		document.write(`${userNumder} сантіметрів це ${inches} дюймів;</br>
+    						${userNumder} кілограм це ${pounds} фунтів;</br>
+    						${userNumder} кілометрів це ${miles} миль.`)
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_9</title>
+</head>
+
+<body>
+	<h1>Задача №9</h1>
+
+	<p>
+		9. Створити функцію, яка виводить банер (у функцію передаються: зображення, <br>
+		заголовок та посилання, куди переходимо при кліку на зображення<br>
+		(тег img повине знаходитись у середині тега a: <a> <img src=”шлях”> </a>)
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function createBanner(image, text, link) {
+			return `<a style="position:relative" href="${link}" target="_blank"> <span style="position:absolute; bottom:150px;left: 50%">${text}</span> <img src="${image}"></a>`
+		}
+		let showBanner = createBanner('img/aqua_pipe.jpg', 'German pipes', 'https://aquatherm.kiev.ua/')
+		document.write(`${showBanner}`)
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_10</title>
+</head>
+
+<body>
+	<h1>Задача №10</h1>
+
+	<p>
+		10. Дано покази температур (довільна кількість). <br>
+		Розробити функцію, яка дозволить підрахувати кількість від’ємних показів температури.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function numberNegativeValues(a) {
+			let countNegativeValues = 0
+			const minRandomNumber = -40
+			const maxRandomNumber = 40
+			for (let i = 1; i <= a; i++) {
+				const randomNumber = minRandomNumber + Math.floor(Math.random() * (maxRandomNumber - minRandomNumber + 1))
+				if (randomNumber < 0) countNegativeValues++
+				document.write(`${i}) показник: ${randomNumber}<br>`)
+
+			}
+			return countNegativeValues
+		}
+
+		const negativeValues = numberNegativeValues(parseInt(prompt('Введіть довільну кількість показників температур', '0')))
+		document.write(`Від’ємних показів температури було : ${negativeValues}`)
+
+	</script>
+</body>
+
+</html>
