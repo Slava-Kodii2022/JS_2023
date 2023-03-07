@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Дано масив, який містить оцінки з К предметів. <br>
+		Знайти середній бал і з’ясувати до якої категорії він відноситься <br>
+		(відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), <br>
+		трійочник (є хоча би одна трійка)).
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function getPupilRefers(numberAssessments) {
+
+			let count2 = 0;
+			let count3 = 0;
+			let count4 = 0;
+			let count5 = 0;
+
+			for (let k = 0; k < numberAssessments.length; k++) {
+				if (numberAssessments[k] === 2) count2++;
+				if (numberAssessments[k] === 3) count3++;
+				if (numberAssessments[k] === 4) count4++;
+				if (numberAssessments[k] === 5) count5++;
+			}
+
+			if (count2 > 0) return 'Двійочник';
+			if (count3 > 0) return 'Трійочник';
+			if (count4 > 0) return 'Хорошист';
+			if (count5 > 0) return 'Відмінник';
+		}
+		const numberAssessments = parseInt(prompt('Введіть загальну кількість оцінок К:', '0'));
+		const allGrades = [];
+
+		for (let i = 0; i < numberAssessments; i++) {
+			const points = parseInt(prompt('Введіть оцінки:', '2-5'));
+
+			allGrades.push(points);
+		}
+
+		function getGradePoint(numberAssessments) {
+			let averegeGrade = 0;
+			for (let k = 0; k < numberAssessments.length; k++) {
+				averegeGrade += allGrades[k];
+			}
+			return averegeGrade / allGrades.length;
+		}
+
+		const middleValue = getPupilRefers(allGrades);
+		const quality = getGradePoint(allGrades);
+
+		document.write(`Відноситься до категорії: ${middleValue}, середній бал: ${quality}`);
+
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_8</title>
+</head>
+
+<body>
+	<h1>Задача №8</h1>
+
+	<p>
+		8. Дано одновимірний масив, у якому зберігається певна виграшна сума <br>
+		(елементи заповнюються випадковим чином значеннями від -500 до 500). <br>
+		Надаючи користувачу можливість вибирати номери елементів (поки він не відмовиться). <br>
+		Знаходити сумарний виграш.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function winningAmount() {
+			let netProfit = 0
+			let opportunityСhoose
+			do {
+				let amountsWinnings = []
+				for (let i = 0; i < 50; i++) {
+					const minNumber = -500
+					const maxNumber = 500
+					const randomNumber = minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1))
+					amountsWinnings.push(randomNumber)
+				}
+				userNumber = parseInt(prompt('Введіть число від 1 до 50', '0'))
+				netProfit += amountsWinnings[userNumber - 1]
+
+				alert(`Сумарний виграш: ${netProfit}`)
+				opportunityСhoose = confirm('Спробувати ще раз')
+			} while (opportunityСhoose)
+			return netProfit
+		}
+
+		document.write(`Сумарний виграш: ${winningAmount()}`)
+
+	</script>
+</body>
+
+</html>

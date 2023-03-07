@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_7</title>
+</head>
+
+<body>
+	<h1>Задача №7</h1>
+
+	<p>
+		7. Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:<br>
+		1) за весь рік;<br>
+		2) у першій половині року;<br>
+		3) у другій половині року;<br>
+		4) за літо;<br>
+		5) за ІІ квартал;<br>
+		6) за парні місяці (з парними номерами);<br>
+		7) за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const paymentList = [1850, 2000, 1750, 690, 820, 760, 810, 840, 720, 780, 980, 1790]
+
+		function getPaymentSum(payment, startPeriod, endPeriod) {
+			let sum = 0;
+			for (let i = startPeriod - 1; i < endPeriod; i++) {
+				sum += paymentList[i];
+			}
+			return sum;
+		}
+
+		const paymentsForYear = getPaymentSum(paymentList, 1, 12);
+
+		let paymentsFirstHalfYear = getPaymentSum(paymentList, 1, 6);
+
+		let paymentsSecondHalfYear = getPaymentSum(paymentList, 7, 12);
+
+		const paymentsSummer = getPaymentSum(paymentList, 6, 8);
+
+		const paymentsSecondQuarter = getPaymentSum(paymentList, 4, 6);
+
+		let pairedSum = 0;
+		for (let i = 0; i < 12; i += 2) {
+			pairedSum += paymentList[i];
+		}
+
+		let oneInThreeSum = 0;
+		for (let i = 2; i < paymentList.length; i += 3) {
+			oneInThreeSum += paymentList[i];
+		}
+
+
+
+		document.write(`<ol> Сумарна кількість грошей за:
+			<li> за весь рік: ${paymentsForYear}</li>
+			<li> у першій половині року: ${paymentsFirstHalfYear} </li>
+			<li> у другій половині року: ${paymentsSecondHalfYear} </li>
+			<li> за літо: ${paymentsSummer}</li>
+			<li> за ІІ квартал: ${paymentsSecondQuarter} </li>
+			<li> за парні місяці (з парними номерами): ${pairedSum}</li>
+			<li> за місяці, які є початковими у сезоні (весна, літо, осінь, зима): ${oneInThreeSum} </li>
+	</ol>`);
+
+
+
+	</script>
+</body>
+
+</html>

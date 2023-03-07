@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<body>
+	<h1>Задача №5</h1>
+
+	<p>
+		5. Дано послідовність оцінок учня. Підрахувати кількість:<br>
+		1) двійок<br>
+		2) кількість хороших оцінок (добре, відмінно);<br>
+		3) кількість оцінок, які нижче середнього
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const evaluations = [4, 4, 5, 3, 5, 2, 4, 3, 2, 3, 5, 4, 5, 4];
+
+		function countEvaluationsTwo(evaluations) {
+			let count = 0;
+			for (let i = 0; i < evaluations.length; i++) {
+				if (evaluations[i] === 2) count++;
+			}
+			return count;
+		}
+
+		function countEvaluationsGood(evaluations) {
+			let count4 = 0;
+			let count5 = 0;
+
+			for (let i = 0; i < evaluations.length; i++) {
+				if (evaluations[i] === 4) count4++;
+			}
+			for (let i = 0; i < evaluations.length; i++) {
+				if (evaluations[i] === 5) count5++;
+			}
+			return count4 + count5;
+		}
+
+		function countEvaluationsAverage(evaluations) {
+			count = 0;
+			for (let i = 0; i < evaluations.length; i++) {
+				if (evaluations[i] === 3) count++;
+			}
+			return count;
+		}
+
+		const evaluationsTwo = countEvaluationsTwo(evaluations);
+		const evaluationsGood = countEvaluationsGood(evaluations);
+		const evaluationsAverage = countEvaluationsAverage(evaluations);
+
+		document.write(`<ol> Кількість оцінок учня:
+            <li> двійок: ${evaluationsTwo}</li>
+            <li> хороших (добре, відмінно): ${evaluationsGood}</li>
+            <li> які нижче середнього: ${evaluationsAverage}</li>
+      </ol>`);
+
+	</script>
+
+</body>
+
+</html>

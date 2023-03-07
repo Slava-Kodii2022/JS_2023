@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<body>
+	<h1>Задача №2</h1>
+
+	<p>
+		2. Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:<br>
+		• номери днів, протягом яких кількість відвідувачів була меншою за 20;<br>
+		• номери днів, коли кількість відвідувачів була мінімальною;<br>
+		• номери днів, коли кількість відвідувачів була максимальною;<br>
+		• загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		let numberVisitors = [18, 38, 63, 78, 136, 420, 360]
+
+		const wasSmaller = [];
+		for (let i = 0; i < numberVisitors.length; i++) {
+			if (numberVisitors[i] < 20) {
+				wasSmaller.push(i + 1);
+			}
+		}
+
+		const minVisitors = Math.min(...numberVisitors);
+		const minDayVisitors = [];
+		for (let i = 0; i < numberVisitors.length; i++) {
+			if (numberVisitors[i] === minVisitors) minDayVisitors.push(i + 1);
+		}
+
+		const maxVisitors = Math.max(...numberVisitors);
+		const maxDayVisitors = [];
+		for (let i = 0; i < numberVisitors.length; i++) {
+			if (numberVisitors[i] === maxVisitors) maxDayVisitors.push(i + 1);
+		}
+
+		let workingDayVisitors = 0;
+		let weekendDayVisitors = 0;
+		for (let i = 0; i < numberVisitors.length; i++) {
+			if (i === 5 || i === 6) {
+				weekendDayVisitors += numberVisitors[i];
+			} else {
+				workingDayVisitors += numberVisitors[i];
+			}
+		}
+
+		document.write(`<ul>
+					<li> Кількість відвідувачів магазину протягом тижня: ${numberVisitors} </li>
+					<li> Номери днів, протягом яких кількість відвідувачів була меншою за 20: ${wasSmaller} </li>
+					<li> Номери днів, коли кількість відвідувачів була мінімальною: ${minDayVisitors} </li>
+					<li> Номери днів, коли кількість відвідувачів була максимальна: ${maxDayVisitors} </li>
+					<li>Загальну кількість клієнтів у робочі дні: ${workingDayVisitors} </li>
+					<li>Загальну кількість клієнтів у вихідні дні: ${weekendDayVisitors} </li>
+			</ul>`);
+
+	</script>
+</body>
+
+</html>
