@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_10</title>
+</head>
+
+<body>
+	<h1>Задача №10</h1>
+
+	<p>
+		10. Дано масив цін у грн. Податок складає 20%. <br>
+		Сформувати масив, який буде містити величину сплаченого податку у грн.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const productsPrices = [45, 420, 51, 66, 24, 330, 12, 270]
+
+		function getNumber(productsPrices) {
+			productsPrices.forEach((element, index, arrRef) => {
+				arrRef[index] = arrRef[index] - arrRef[index] / 1.2;
+			});
+		}
+
+		getNumber(productsPrices);
+		document.write(`Величина сплаченого 20% податку у грн: ${productsPrices}`);
+
+	</script>
+</body>
+
+</html>

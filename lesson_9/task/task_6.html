@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_6</title>
+</head>
+
+<body>
+	<h1>Задача №6</h1>
+
+	<p>
+		6. Дано масив елементів. Усі елементи, які більші за перший елемент помножити на 2
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const arrayElements = [45, 89, 19, 20, -15, -423, 8, -935, 245, 56];
+
+		function getElement(arrayElements) {
+			arrayElements.forEach((element, index, arrRef) => {
+				if (element > arrRef[0]) arrRef[index] *= 2;
+			});
+		}
+
+		getElement(arrayElements);
+		document.write(`Усі елементи, які більші за перший елемент помножити на 2: ${arrayElements}`);
+
+	</script>
+</body>
+
+</html>

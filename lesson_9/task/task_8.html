@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_8</title>
+</head>
+
+<body>
+	<h1>Задача №8</h1>
+
+	<p>
+		8. Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А»
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const autoNumber = ['AA0001СК', 'ВA0002AK', 'CA5953СК', 'AB3573AK', 'AC8932OA', 'КА4391AР', 'AI3397AA', 'AC5689AA'];
+
+		function getNumber(usersNum) {
+			let whichBeginWithA = [];
+			autoNumber.forEach((element, index, arrRaf) => {
+				if (arrRaf[index][0] === 'A') whichBeginWithA.push(element);
+			});
+
+			return whichBeginWithA;
+		}
+
+		const result = getNumber(autoNumber);
+		document.write(`Номери авто які починаються на «А»: ${result}`);
+
+	</script>
+</body>
+
+</html>

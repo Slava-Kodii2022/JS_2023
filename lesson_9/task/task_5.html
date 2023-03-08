@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<body>
+	<h1>Задача №5</h1>
+
+	<p>
+		5. Дано масив елементів. Знайти добуток додатних елементів
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const arrayElements = [45, -89, 19, 20, -15, -423, 8, -935, -245, 56];
+
+		function getElement(arrayElements) {
+			let totalSum = 1;
+			for (const item of arrayElements) {
+				if (item > 0) totalSum *= item;
+			}
+			return totalSum;
+		}
+
+		const result = getElement(arrayElements);
+		document.write(`Добуток додатних елементів: ${result}`);
+
+
+	</script>
+
+</body>
+
+</html>

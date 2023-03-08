@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_9</title>
+</head>
+
+<body>
+	<h1>Задача №9</h1>
+
+	<p>
+		9. Дано масив імен. Сформувати масив з перших літер цих імен.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const namesPupils = ['Матвій', 'Іван', 'Ваня', 'Іван', 'Настя', 'Артем'];
+
+		function getNumber(namesPupils) {
+			let firstLettersNames = [];
+			namesPupils.forEach((element, index, arrRaf) => {
+				firstLettersNames.push(arrRaf[index][0]);
+			});
+
+			return firstLettersNames;
+		}
+
+		const result = getNumber(namesPupils);
+		document.write(`Перші літери цих імен: ${result}`);
+
+	</script>
+</body>
+
+</html>
