@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+
+<body>
+	<h1>Задача №4</h1>
+
+	<p>
+		4. З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими <br>
+		викликами видавати по одну букву наперед заданого слова. <br>
+		З використанням нього розробити гру «Прекладач». <br>
+		Виводимо для користувача опис цього слова і по одну букву користувач вводить переклад цього слова. <br>
+		Підрахувати кількість вгаданих букв.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function getCountGuessedLetters(scenarios) {
+			let letter = 0
+			function counter() {
+				return scenarios.charAt(letter++)
+			}
+			return counter
+		}
+		function translater(scenarios) {
+			let msg = alert('динамічна, об"єктно-орієнтована прототипна мова програмування (всі літери маленькі, без пробілів)')
+			let couterLetters = 0
+			let countGuessedLetters = getCountGuessedLetters(scenarios)
+			for (let i = 0; i < scenarios.length; i++) {
+				let res = countGuessedLetters()
+				let userLetter = prompt(`Введіть ${i + 1} букву`)
+				if (userLetter.toLowerCase() === res.toLowerCase()) {
+					couterLetters++
+					alert('вгадали букву')
+				} else alert('НЕ вгадали букву')
+			}
+			return couterLetters
+		}
+		let scenarios = 'javascript'
+		document.write(`мова програмування: ${scenarios}<br>`)
+		document.write(`кількість вгаданих букв: ${translater(scenarios)}`)
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<body>
+	<h1>Задача №3</h1>
+
+	<p>
+		3. З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими <br>
+		викликами видавати по одне значення від заданого мінімального до заданого максимального. <br>
+		Якщо значення досягне максимального, то наступним буде мінімальне значення. <br>
+		З використанням цієї функції реалізувати перебір номерів місяців.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		// вводимо дані та створюємо функцію
+
+		const minNumber = 1
+		const maxNumber = 12
+		const period = maxNumber * 3
+
+		function getFunctionSortingNumbersMonths(minV, maxV) {
+			let counter = minV
+			function sortingNumbersMonths() {
+				if (counter > maxV) counter = minV
+				return counter++
+			}
+			return sortingNumbersMonths
+		}
+
+
+		// обчислення та вивід результату
+
+		let result = getFunctionSortingNumbersMonths(minNumber, maxNumber)
+		for (let i = 0; i < period; i++) {
+			document.write(`<h4>${result()}</h4>`)
+		}
+
+	</script>
+</body>
+
+</html>
