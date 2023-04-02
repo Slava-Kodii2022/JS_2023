@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<body>
+	<h1>Задача №3</h1>
+
+	<p>
+		3. Дано масив 30 випадкових цілих чисел. <br>
+		Підрахувати скільки було обмінів під час сортування включеннями
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		// генеруємо випадкові цілі числа
+
+		function getRandomNumber(minV, maxV) {
+			return minV + Math.floor(Math.random() * (maxV - minV + 1))
+		}
+
+		// генеруємо масив випадкових цілих чисел
+
+		function getRandomArr(elementQuontity, minV, maxV) {
+			const arr = []
+			for (let i = 0; i < elementQuontity; i++) {
+				const randNum = getRandomNumber(minV, maxV)
+				arr.push(randNum)
+			}
+			return arr
+		}
+
+		// виводимо масив випадкових цілих чисел
+
+		const array = getRandomArr(30, 1, 100)
+		document.write(`масив випадкових цілих чисел: [${array}]<br>`)
+
+		// Підрахунок скільки було обмінів під час сортування включеннями
+
+		function getNumberOfExchangesDuringInclusionSorting(array) {
+			let counter = 0
+			for (let k = 1; k < array.length; k++) {
+				let currentElement = array[k]
+				let i = k - 1
+				while (i >= 0 && array[i] > currentElement) {
+					array[i + 1] = array[i]
+					i = i - 1
+					counter++
+				}
+				array[i + 1] = currentElement
+			}
+			return counter
+		}
+
+		// виводимо 
+
+		const numberOfExchangesDuringInclusionSorting = getNumberOfExchangesDuringInclusionSorting(array)
+
+		document.write(`відсортований масив методом включення: [${array}]<br>`)
+		document.write(`кількість обмінів під час сортування методом включення: [${numberOfExchangesDuringInclusionSorting}]<br>`)
+
+	</script>
+</body>
+
+</html>

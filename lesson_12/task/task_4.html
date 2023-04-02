@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+
+<body>
+	<h1>Задача №4</h1>
+
+	<p>
+		4. Для розглянутих методів сортування спробувати вивести етапи <br>
+		сортування шляхом виведення відповідних таблиць за зразком <br>
+		Тобто кожного разу після обміну елементів вивести поточний стан масиву на екран
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		// генеруємо випадкові цілі числа
+
+		function getRandomNumber(minV, maxV) {
+			return minV + Math.floor(Math.random() * (maxV - minV + 1))
+		}
+
+		// генеруємо масив випадкових цілих чисел
+
+		function getRandomArr(elementQuontity, minV, maxV) {
+			const arr = []
+			for (let i = 0; i < elementQuontity; i++) {
+				const randNum = getRandomNumber(minV, maxV)
+				arr.push(randNum)
+			}
+			return arr
+		}
+
+		// виводимо масив випадкових цілих чисел 
+
+		const array = getRandomArr(5, 1, 100)
+		const array2 = getRandomArr(5, 1, 100)
+		const array3 = getRandomArr(5, 1, 100)
+
+		// Сортування бульбашкою
+
+		document.write(`<h4>Сортування бульбашкою</h4> Дано масив: [${array}]<br>`)
+
+		function getNumberOfExchangesBubbleMethod(array) {
+			let current = 0
+			let exchang
+			do {
+				exchang = false
+				for (let i = 1; i < array.length; i++) {
+					if (array[i - 1] > array[i]) {
+						let temp = array[i]
+						array[i] = array[i - 1]
+						array[i - 1] = temp
+						exchang = true
+						current++
+						document.write(`[${array}]<br>`)
+					}
+				}
+			} while (exchang);
+			return current
+		}
+		const numberOfExchangesBubbleMethod = getNumberOfExchangesBubbleMethod(array)
+
+		// Сортування змішуванням
+
+		document.write(`<h4>Сортування змішуванням</h4> Дано масив: [${array2}]<br>`)
+
+		function getNumberOfExchangesDuringShuffleSort(array2) {
+			let counter = 0
+			let leftOnIndex = 0
+			let rightOnIndex = array2.length - 1
+
+			while (leftOnIndex < rightOnIndex) {
+				for (let i = leftOnIndex; i < rightOnIndex; i++) {
+					if (array2[i] > array2[i + 1]) {
+						[array2[i + 1], array2[i]] = [array2[i], array2[i + 1]]
+						counter++
+						document.write(`[${array2}]<br>`)
+					}
+				}
+				rightOnIndex--
+
+				for (let i = rightOnIndex; i > leftOnIndex; i--) {
+					if (array2[i] < array2[i - 1]) {
+						[array2[i - 1], array2[i]] = [array2[i], array2[i - 1]]
+						counter++
+						document.write(`[${array2}]<br>`)
+					}
+				}
+				leftOnIndex++
+			}
+			return array2
+		}
+		const numberOfExchangesDuringShuffleSort = getNumberOfExchangesDuringShuffleSort(array2)
+
+		//Cортування включенням
+
+		document.write(`<h4>Сортування включенням</h4> Дано масив: [${array3}]<br>`)
+
+		function getNumberOfExchangesDuringInclusionSorting(array) {
+			let counter2 = 0
+			for (let k = 1; k < array3.length; k++) {
+				let currentElement = array3[k]
+				let i = k - 1
+				while (i >= 0 && array3[i] > currentElement) {
+					array3[i + 1] = array3[i]
+					i = i - 1
+					counter2++
+				}
+				array3[i + 1] = currentElement
+				document.write(`[${array3}]<br>`)
+			}
+		}
+		const numberOfExchangesDuringInclusionSorting = getNumberOfExchangesDuringInclusionSorting(array)
+
+	</script>
+</body>
+
+</html>
