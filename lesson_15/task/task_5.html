@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<style>
+	table {
+		border: 2px solid rgb(40, 40, 40);
+	}
+
+	td {
+		border: 1px solid rgb(40, 40, 40);
+		padding: 5px;
+	}
+</style>
+
+<body>
+	<h1>Задача №5</h1>
+
+	<p>
+		5. Розробити клас «Керівник танців»
+	</p>
+	<table>
+		<tr>
+			<td>Поля</td>
+			<td>
+				Масив імен хлопців<br>
+				Масив імен дівчат
+			</td>
+		</tr>
+		<tr>
+			<td>Методи</td>
+			<td>
+				Метод випадкового вибору імені хлопця<br>
+				Метод випадкового вибору імені дівчини<br>
+				Метод виведення пари для танців<br>
+				Метод run , який ініціює через кожні 5 секунд виведення нової пари для танців
+			</td>
+		</tr>
+	</table>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class DanceHead {
+			constructor(nameGirls, nameBoys) {
+				this.nameGirls = nameGirls
+				this.nameBoys = nameBoys
+			}
+			getRandomNameGirls() {
+				let randomIndex = Math.floor(Math.random() * this.nameGirls.length)
+				return this.nameGirls[randomIndex]
+			}
+			getRandomNameBoys() {
+				let randomIndex = Math.floor(Math.random() * this.nameBoys.length)
+				return this.nameBoys[randomIndex]
+			}
+			showDancePair() {
+				return `${this.getRandomNameBoys()} та ${this.getRandomNameGirls()}`
+			}
+			run() {
+				setTimeout(
+					() => {
+						document.write(this.showDancePair())
+						document.write(`<br>`)
+						this.run()
+					},
+					5000
+				)
+			}
+		}
+
+		let nameGirls = ['Юлія#7156', 'Olesia#3018', 'Mariia#7447', 'Maria Designerka', 'Daria Bilan', '=^.^=(Дар"я)', 'Anna Lovatto', 'Євгенія Р', '=Liza=', 'Лилия Кобзар']
+		let nameBoys = ['Andrew', 'Вячеслав', 'nilline - Женя', 'Ramzes 13', 'Yevhen__', 'Anton', 'YuraVitoshko', 'Хмурый кот', 'ShocKKKKKKK', 'Sir Pancake']
+		let head = new DanceHead(nameGirls, nameBoys)
+		head.run()
+
+	</script>
+
+</body>
+
+</html>

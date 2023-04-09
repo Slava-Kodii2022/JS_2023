@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+
+<style>
+	table {
+		border: 2px solid rgb(40, 40, 40);
+	}
+
+	td {
+		border: 1px solid rgb(40, 40, 40);
+		padding: 5px;
+	}
+</style>
+
+<body>
+	<h1>Задача №4</h1>
+
+	<p>
+		4. Розробити клас Baner
+	</p>
+	<table>
+		<tr>
+			<td>Поля</td>
+			<td>
+				Масив об’єктів ( графічних зображень та посилань на сайти)
+			</td>
+		</tr>
+		<tr>
+			<td>Методи</td>
+			<td>
+				Метод випадкового вибору об’єкта (графічного зображення та посилання)<br>
+				Метод виведення випадкового банера<br>
+			</td>
+		</tr>
+	</table>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class Banner {
+			constructor(banner, link) {
+				this.banner = banner
+				this.link = link
+			}
+			getRandomNumber(minVal, maxVal) {
+				return Math.floor(Math.random() * (maxVal - minVal + 1) + minVal)
+			}
+			toString() {
+				return `<a href="${this.link}"><img src="${this.banner}" alt="${this.banner}"></a>`
+			}
+		}
+		let bannerList = [
+			banner1 = new Banner(`../img/kamenetz_podolsky_fortress.jpeg`, `http://muzeum.in.ua/`),
+			banner2 = new Banner(`../img/kherson_grand_canyon.jpeg`, `https://en.wikipedia.org/wiki/Stanislav,_Kherson_Oblast`),
+			banner3 = new Banner(`../img/khortytsia_island.jpeg`, `https://ostriv.org/en/`),
+			banner4 = new Banner(`../img/sophia_kyiv.jpeg`, `https://st-sophia.org.ua/uk/golovna/`),
+			banner5 = new Banner(`../img/uzhgorod_castle.jpeg`, `https://uzhgorodcastle.com/`)
+		]
+		let number = bannerList[0].getRandomNumber(0, bannerList.length - 1)
+		document.write(bannerList[number])
+
+	</script>
+
+</body>
+
+</html>

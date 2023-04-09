@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+<style>
+	table {
+		border: 2px solid rgb(40, 40, 40);
+	}
+
+	td {
+		border: 1px solid rgb(40, 40, 40);
+		padding: 5px;
+	}
+</style>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Створити об’єкт «Тир». У масиві зберігаються 1, <br>
+		якщо у цьому квадраті є заєць і 0 в іншому випадку.
+	</p>
+	<table>
+		<tr>
+			<td>Тир</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Поля(властивості)</td>
+			<td>Масив, у якому зберігається поле з зайцями</td>
+		</tr>
+		<tr>
+			<td>Методи (дії)</td>
+			<td>
+				Метод пострілу (задається позиція пострілу)<br>
+				Виведення ігровогополя
+			</td>
+		</tr>
+	</table>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function shootingGallery(rowNumber, columnNumber, haresNumber) {
+			this.rowNumber = rowNumber
+			this.columnNumber = columnNumber
+			this.haresNumber = haresNumber
+			this.haresField = this.getHaresField(haresNumber)
+		}
+
+		// формування вільного двовимірний масиву
+
+		shootingGallery.prototype.getFreeField = function () {
+			let freeField = []
+			for (let row = 0; row < this.rowNumber; row++) {
+				const rowGameField = new Array(this.columnNumber).fill(0)
+				freeField.push(rowGameField)
+			}
+			return freeField
+		}
+
+		// генерування рандомного числа
+
+		shootingGallery.prototype.getRandomNumber = function (minNumber, maxNumber) {
+			return minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1))
+		}
+		// формування поля гри з розташованими зайцями
+
+		shootingGallery.prototype.getHaresField = function (haresNumber) {
+			let gameField = this.getFreeField()
+			do {
+				let hareIndexRow = this.getRandomNumber(0, this.rowNumber - 1)
+				let hareIndexColumn = this.getRandomNumber(0, this.columnNumber - 1)
+				if (gameField[hareIndexRow][hareIndexColumn] !== 1) {
+					gameField[hareIndexRow][hareIndexColumn] = 1
+					haresNumber--
+				}
+			} while (haresNumber > 0)
+			return gameField
+		}
+
+		// виведення ігрового поля
+
+		shootingGallery.prototype.showHaresField = function () {
+			document.write(this.haresField)
+		}
+
+		// постріл
+
+		shootingGallery.prototype.shot = function () {
+			do {
+				const userRow = parseInt(prompt(`На гральному полі ${this.rowNumber} рядків. Введіть номер рядку.`)) - 1
+				const userColumn = parseInt(prompt(`На гральному полі ${this.columnNumber} колонок. Введіть номер колонки.`)) - 1
+				if (this.haresField[userRow][userColumn] === 1) {
+					this.haresField[userRow][userColumn] = 0
+					this.haresNumber--
+					alert(`Влучання!!! Залишилось ${this.haresNumber} зайців.`)
+				}
+				else alert(`НE влучив!!! Залишилось ${this.haresNumber} зайців.`)
+
+			} while (this.haresNumber > 0)
+			document.write(`<br> Кінець гри`)
+		}
+
+		let game = new shootingGallery(5, 5, 10)
+		game.showHaresField()
+		game.shot()
+
+	</script>
+
+</body>
+
+</html>

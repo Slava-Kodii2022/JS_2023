@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<style>
+	table {
+		border: 2px solid rgb(40, 40, 40);
+	}
+
+	td {
+		border: 1px solid rgb(40, 40, 40);
+		padding: 5px;
+	}
+</style>
+
+<body>
+	<h1>Задача №2</h1>
+
+	<p>
+		2. Створити об’єкт «Авто»
+	</p>
+	<table>
+		<tr>
+			<td>Авто</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Поля(властивості)</td>
+			<td>Марка<br>
+				Розмір бака<br>
+				Кількість наявних літрів<br>
+				Кількість місць<br>
+				Кількість пасажирів<br>
+			</td>
+		</tr>
+		<tr>
+			<td>Методи (дії)</td>
+			<td>
+				Заправка на вказану кількість літрів<br>
+				Виведення кількості пасажирів<br>
+				Додавання пасажирів<br>
+				Висадка пасажирів<br>
+			</td>
+		</tr>
+	</table>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class auto {
+			constructor(initCarBrand, initSizeTank, initNumberAvailableLiters, initNumberSeats, initNumberPassengers) {
+				this.carBrand = initCarBrand, // Марка
+					this.sizeTank = initSizeTank, // Розмір бака
+					this.numberAvailableLiters = initNumberAvailableLiters, // Кількість наявних літрів
+					this.numberSeats = initNumberSeats, // Кількість місць
+					this.numberPassengers = initNumberPassengers // Кількість пасажирів
+			}
+
+			// Заправка на вказану кількість літрів
+
+			refuelingSpecifiedNumberLiters(numberLiters) {
+				return (numberLiters <= (this.sizeTank - this.numberAvailableLiters)) ? this.numberAvailableLiters += numberLiters : 'Об"єм бака недостатній, спробуйте заправити менше'
+			}
+
+			// Виведення кількості пасажирів
+
+			outpuNumberPassengers() {
+				return this.numberPassengers
+			}
+
+			// Додавання пасажирів
+
+			addingPassengers(numAddPassengers) {
+				return (numAddPassengers <= this.numberSeats - this.numberPassengers) ? this.numberPassengers += numAddPassengers : 'Недостатньо місць'
+			}
+
+			// Висадка пасажирів
+
+			landingPassengers(numLandingPassengers) {
+				return (numLandingPassengers <= this.numberPassengers) ? this.numberPassengers -= numLandingPassengers : this.numberPassengers
+			}
+		}
+
+		let car = new auto('Hyundai', 80, 20, 4, 3)
+		console.log(car.refuelingSpecifiedNumberLiters(20))
+		console.log(car.outpuNumberPassengers())
+		console.log(car.addingPassengers(2))
+		console.log(car.landingPassengers(1))
+		console.log(car)
+
+		document.write(`Заправка на вказану кількість літрів: ${car.refuelingSpecifiedNumberLiters(20)}<br>
+							Виведення кількості пасажирів: ${car.outpuNumberPassengers()}<br>
+							Додавання пасажирів: ${car.addingPassengers(2)}<br>
+							Висадка пасажирів: ${car.landingPassengers(1)}<br>
+		`)
+
+
+	</script>
+</body>
+
+</html>

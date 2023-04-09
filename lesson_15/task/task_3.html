@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<style>
+	table {
+		border: 2px solid rgb(40, 40, 40);
+	}
+
+	td {
+		border: 1px solid rgb(40, 40, 40);
+		padding: 5px;
+	}
+</style>
+
+<body>
+	<h1>Задача №3</h1>
+
+	<p>
+		3. Розробити клас MultChecker для перевірки таблиці множення
+	</p>
+	<table>
+		<tr>
+			<td>Поля</td>
+			<td>
+				Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)<br>
+				Кількість правильних відповідей<br>
+				Кількість неправильних відповідей<br>
+			</td>
+		</tr>
+		<tr>
+			<td>Методи</td>
+			<td>
+				Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)<br>
+				Перевірка правильності вказаної відповіді<br>
+				render - виведення інформації про тестування на екран
+			</td>
+		</tr>
+	</table>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class MultChecker {
+			constructor(initChecksNumber) {
+				this.checksNumber = initChecksNumber
+				this.numberCorrectAnswers = 0,
+					this.numberIncorrectAnswers = 0
+			}
+
+			// генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+
+			generationExample() {
+				let secondNumber = 1 + Math.floor(Math.random() * 10)
+				let сorrectAnswers = this.checksNumber * secondNumber
+				return { secondNumber, сorrectAnswers }
+			}
+
+			getVerificationAnswer() {
+				let example = this.generationExample()
+				const userAnswer = parseInt(prompt(`${this.checksNumber} * ${example.secondNumber} =`))
+				if (userAnswer === example.сorrectAnswers) {
+					alert('Правильно')
+					this.numberCorrectAnswers++
+				}
+				else {
+					alert('Неправильно')
+					this.numberIncorrectAnswers++
+				}
+				confirm('Спробуй ще раз') ? this.getVerificationAnswer() : this.render()
+			}
+
+			render() {
+				document.write(`Кількість правильних відповідей: ${this.numberCorrectAnswers}<br>
+									Кількість неправильних відповідей: ${this.numberIncorrectAnswers}<br>`)
+			}
+		}
+
+		const userCheckNumber = parseInt(prompt('Таблицю множення якого числа повторюємо?', '0'))
+		let lesson = new MultChecker(userCheckNumber)
+		lesson.getVerificationAnswer()
+
+		document.write(`Перевірка таблиці множення на: ${userCheckNumber}<br>`)
+
+	</script>
+</body>
+
+</html>
