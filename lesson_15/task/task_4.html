@@ -45,27 +45,49 @@
 
 	<script>
 
-		class Banner {
-			constructor(banner, link) {
-				this.banner = banner
-				this.link = link
+		const arrBaners = [
+			{
+				image: "../img/kamenetz_podolsky_fortress.jpeg",
+				link: "http://muzeum.in.ua/",
+			},
+			{
+				image: "../img/kherson_grand_canyon.jpeg",
+				link: "https://en.wikipedia.org/wiki/Stanislav,_Kherson_Oblast",
+			},
+			{
+				image: "../img/khortytsia_island.jpeg",
+				link: "`https://ostriv.org/en/",
+			},
+			{
+				image: "../img/sophia_kyiv.jpeg",
+				link: "https://st-sophia.org.ua/uk/golovna/",
+			},
+			{
+				image: "../img/uzhgorod_castle.jpeg",
+				link: "https://uzhgorodcastle.com/",
+			},
+		];
+
+		class Baner {
+			constructor(banerList) {
+				this.banerList = banerList;
 			}
-			getRandomNumber(minVal, maxVal) {
-				return Math.floor(Math.random() * (maxVal - minVal + 1) + minVal)
+
+			randomIndexArr() {
+				const randomNum = Math.floor(Math.random() * this.banerList.length);
+
+				return this.banerList[randomNum];
 			}
-			toString() {
-				return `<a href="${this.link}"><img src="${this.banner}" alt="${this.banner}"></a>`
+
+			showRandomBaner() {
+				let randomImg = this.randomIndexArr();
+
+				document.write(`<a href=${randomImg.link}><img src=${randomImg.image}></a>`);
 			}
 		}
-		let bannerList = [
-			banner1 = new Banner(`../img/kamenetz_podolsky_fortress.jpeg`, `http://muzeum.in.ua/`),
-			banner2 = new Banner(`../img/kherson_grand_canyon.jpeg`, `https://en.wikipedia.org/wiki/Stanislav,_Kherson_Oblast`),
-			banner3 = new Banner(`../img/khortytsia_island.jpeg`, `https://ostriv.org/en/`),
-			banner4 = new Banner(`../img/sophia_kyiv.jpeg`, `https://st-sophia.org.ua/uk/golovna/`),
-			banner5 = new Banner(`../img/uzhgorod_castle.jpeg`, `https://uzhgorodcastle.com/`)
-		]
-		let number = bannerList[0].getRandomNumber(0, bannerList.length - 1)
-		document.write(bannerList[number])
+
+		let showBaner = new Baner(arrBaners);
+		showBaner.showRandomBaner();
 
 	</script>
 
