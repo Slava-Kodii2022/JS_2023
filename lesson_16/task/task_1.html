@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. <br>
+		Дата представляється структурою із трьома полями. <br>
+		Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років. <br>
+		Введення та виведення дати реалізувати за допомогою методу toString.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class TDate {
+			#day
+			#month
+			#year
+			constructor(year, month, day) {
+				this.Year = year
+				this.Month = month
+				this.Day = day
+			}
+
+			// Гетери
+
+			get Day() {
+				return this.#day
+			}
+
+			get Month() {
+				return this.#month
+			}
+
+			get Year() {
+				return this.#year
+			}
+
+			// Сетери
+
+			set Day(day) {
+				if (day < 1 || day > this.getMonthDaysNumber(this.Month))
+					throw new Error("Incorrect day")
+				this.#day = day
+			}
+
+			set Month(month) {
+				if (month < 1 || month > 12) throw new Error("Incorrect month")
+				this.#month = month
+			}
+
+			set Year(year) {
+				if (year <= 0) throw new Error("Incorrect year")
+				this.#year = year
+			}
+
+			// Методи:
+			// функція по визначенню кількості днів в місяці
+
+			getMonthDaysNumber(month) {
+				let result
+				switch (month) {
+					case 4:
+					case 6:
+					case 9:
+					case 11:
+						result = 30
+						break
+					case 2:
+						result = 28
+						break
+					default:
+						result = 31
+						break
+				}
+				return result
+			}
+
+			// збільшення та зменшення кількості років
+
+			increaseYear(value) {
+				this.Year += value
+			}
+
+			decreaseYear(value) {
+				this.Year -= value
+			}
+
+			// збільшення та зменшення кількості місяців
+
+			increaseMonth(value) {
+				this.increaseYear(Math.floor(this.Month + value - 1) / 12)
+				this.Month = ((this.Month + value - 1) % 12) + 1
+			}
+
+			decreaseMonth(value) {
+				this.decreaseYear(Math.floor((this.Month - val - 1) / 12))
+				this.Month = ((this.Month - (val % 12) + 11) % 12) + 1
+			}
+
+			// збільшення та зменшення кількості днів
+
+			increaseDays(value) {
+				const temp = this.Day
+				this.Day = ((this.Day - 1 + value) % this.getMonthDaysNumber(this.Month)) + 1
+				this.increaseMonth(Math.floor((temp - 1 + value) / this.getMonthDaysNumber(this.Month)))
+			}
+
+			decreaseDay(value) {
+				const daysInMonth = this.getMonthDaysNumber(this.Month)
+				this.Day = this.Day - value
+				if (this.day < 1) {
+					this.day = this.day + daysInMonth
+					this.decreaseMonths(1)
+				}
+			}
+
+			toString() {
+				return `<b> ${this.Day}. ${this.Month}. ${this.Year}р. </b>`
+			}
+		}
+
+		let year = parseInt(prompt('Введіть рік', '0000'))
+		let month = parseInt(prompt('Введіть місяць', '00'))
+		let day = parseInt(prompt('Введіть день', '00'))
+
+		let dateUser = new TDate(year, month, day)
+		document.write(dateUser)
+
+	</script>
+
+</body>
+
+</html>

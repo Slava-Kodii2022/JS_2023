@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<body>
+	<h1>Задача №2</h1>
+
+	<p>
+		2. Створити клас TMoney для роботи з грошовими сумами. <br>
+		Сума повинна зберігатися у вигляді доларового еквіваленту. <br>
+		Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, <br>
+		та визначення курсу долара, при якому сума у гривнях збільшиться на 100. <br>
+		Курс долара зберігати в окремому полі.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class TMoney {
+			#balance
+			#exchangeRate
+			constructor(balance, exchangeRate) {
+				this.ExchangeRate = exchangeRate
+				this.Balance = balance
+			}
+
+			//---------------------------
+
+			get Balance() {
+				return this.#balance
+			}
+			get ExchangeRate() {
+				return this.#exchangeRate
+			}
+
+			//---------------------------
+
+			set Balance(val) {
+				if (val < 0) throw new Error('Incorrect Try again')
+				this.#balance = Math.round((val / this.ExchangeRate) * 100) / 100
+			}
+			set ExchangeRate(val) {
+				if (val < 0) throw new Error('Incorrect Try again')
+				this.#exchangeRate = val
+			}
+
+			//---------------------------
+
+			increaseBalance(val) {
+				this.Balance = this.Balance * this.ExchangeRate + val
+			}
+			decreaseBalance(val) {
+				this.Balance = this.Balance * this.ExchangeRate - val
+			}
+			getProfitableExchangeRate() {
+				let balanceGRN = this.Balance * this.ExchangeRate
+				return (
+					Math.round(
+						(((balanceGRN + 100) * this.ExchangeRate) / balanceGRN) * 100
+					) / 100
+				)
+			}
+			toString() {
+				return `
+		Сума вигляді доларового еквіваленту: ${this.Balance} $<br>
+      Курс долара: ${this.ExchangeRate}<br>
+      Визначення курсу долара: ${this.getProfitableExchangeRate()}
+      `
+			}
+		}
+
+		let moneyNeed = new TMoney(2023, 37)
+
+		moneyNeed.increaseBalance(370)
+		console.log(moneyNeed)
+		document.write(moneyNeed)
+
+	</script>
+</body>
+
+</html>

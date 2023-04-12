@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<style>
+	table {
+		border: 2px solid rgb(40, 40, 40);
+	}
+
+	td {
+		border: 1px solid rgb(40, 40, 40);
+		padding: 5px;
+	}
+</style>
+
+<body>
+	<h1>Задача №3</h1>
+
+	<p>
+		3. Об’єкт “Фірма” (використати члени-класи)
+	</p>
+	<table>
+		<tr>
+			<td><b>Поля</b></td>
+			<td>
+				▪ назва фірми; <br>
+				▪ дата заснування (рік, місяць);<br>
+				▪ послуги (назва послуги, вартість, термін виконання);<br>
+				▪ адреси філіалів (країна, місто, вулиця, номер будинку);
+			</td>
+		</tr>
+		<tr>
+			<td><b>Методи</b></td>
+			<td>
+				▪ визначення кількості років існування фірми;<br>
+				▪ виведення всіх філіалів фірми у вказаному місті;<br>
+				▪ виведення на екран послуг, що можуть бути виконані <br>
+				за вказану суму грошей та вказаний термін часу;
+			</td>
+		</tr>
+	</table>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class Company {
+			constructor(title, { year, month }) {
+				this.title = title
+				this.creationDate = new CreationDate({ year, month })
+				this.services = []
+				this.branches = []
+			}
+
+			addService(service) {
+				this.services.push(service)
+			}
+			addBranch(branch) {
+				this.branches.push(branch)
+			}
+			// ▪ визначення кількості років існування фірми
+
+			getNumberYears() {
+				return new Date().getFullYear() - this.creationDate.Year
+			}
+
+			// ▪ виведення всіх філіалів фірми у вказаному місті
+
+			getBranchesCity(city) {
+				for (const branch of this.branches) {
+					if (branch.city === city) document.write(`${branch}<br>`)
+				}
+			}
+
+			// ▪ виведення на екран послуг, що можуть бути виконані
+			//	за вказану суму грошей та вказаний термін часу
+
+			getAvailableServices(price, deadline) {
+				for (const service of this.services) {
+					if (service.Price <= price && service.Deadline <= deadline)
+						document.write(`${service}<br>`)
+				}
+			}
+
+			toString() {
+				return `
+      Назва: <b> ${this.title}</b><br><br>
+      Дата заснування: <b> ${this.creationDate}</b><br><br>
+      Послуги:<b> ${this.services}</b><br><br>
+      Філіали:<b> ${this.branches}</b><br><br>
+      `
+			}
+		}
+
+		// ▪ дата заснування (рік, місяць)
+
+		class CreationDate {
+			#year
+			#month
+			constructor({ year, month }) {
+				this.Year = year
+				this.Month = month
+			}
+			//---------
+			get Year() {
+				return this.#year
+			}
+			get Month() {
+				return this.#month
+			}
+			//---------
+			set Year(val) {
+				if (val < 0) throw new Error('Incorrect year')
+				this.#year = val
+			}
+			set Month(val) {
+				if (val < 1 || val > 12) throw new Error('Incorrect month')
+				this.#month = val
+			}
+			//---------
+			toString() {
+				return `${this.Month}. ${this.Year}p.`
+			}
+		}
+
+		class Service {
+			#title
+			#price
+			#deadline
+			constructor(title, price, deadline) {
+				this.Title = title
+				this.Price = price
+				this.Deadline = deadline
+			}
+
+			//---------
+
+			get Title() {
+				return this.#title
+			}
+			get Price() {
+				return this.#price
+			}
+			get Deadline() {
+				return this.#deadline
+			}
+
+			//---------
+
+			set Title(val) {
+				if (val.length === 0) throw new Error('Title incorrect')
+				this.#title = val
+			}
+			set Price(val) {
+				if (val < 0) throw new Error('Price incorrect')
+				this.#price = val
+			}
+			set Deadline(val) {
+				if (val < 0) throw new Error('Deadline incorrect')
+				this.#deadline = val
+			}
+
+			//---------
+
+			toString() {
+				return `${this.Title} - ${this.Price}грн - ${this.Deadline} днів`
+			}
+		}
+
+		class Branch {
+			constructor(country, city, street, number) {
+				this.country = country
+				this.city = city
+				this.street = street
+				this.number = number
+			}
+			toString() {
+				return `${this.country} - м. ${this.city} - вул. ${this.street} ${this.number}`
+			}
+		}
+
+		// aquatherm GmbH дата заснування
+
+		let aquathermGmbH = new Company('aquatherm GmbH', { year: 1973, month: 8 })
+
+		// aquatherm GmbH послуги
+
+		aquathermGmbH.addService(new Service('Виготовлення труб', 550, 8))
+		aquathermGmbH.addService(new Service('Виготовлення фітингів', 50, 6))
+		aquathermGmbH.addService(new Service('Проектування інженерних мереж', 350, 5))
+
+		// aquatherm GmbH представництва
+
+		aquathermGmbH.addBranch(new Branch('Німеччина', ' Attendorn', 'Biggen', 5))
+		aquathermGmbH.addBranch(new Branch('Україна', 'Київ', 'А.Ахматової', '7/15'))
+		aquathermGmbH.addBranch(new Branch('Іспанія', 'Мадрид', 'Carpinteros', 15))
+		aquathermGmbH.addBranch(new Branch('Чеська Республіка', 'Прага', 'Кутногорська', 288))
+
+		//--------
+
+		document.write(aquathermGmbH)
+		console.log(aquathermGmbH)
+		console.log(aquathermGmbH.branches)
+		aquathermGmbH.getBranchesCity('Київ')
+		aquathermGmbH.getAvailableServices(3000, 9)
+
+	</script>
+
+</body>
+
+</html>
