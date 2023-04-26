@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_6</title>
+</head>
+
+<style>
+	.container {
+		padding: 15px;
+		margin: 10px;
+		width: max-content;
+	}
+</style>
+
+<body>
+	<h1>Задача №6</h1>
+
+	<p>
+		6. Користувач задає кількість оцінок і натискає на кнопку «get table». <br>
+		В результаті формується таблиця з input, куди користувач вводить оцінки. <br>
+		Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function createTableInput() {
+			const divParent = document.querySelector('.container')
+			const priceNumber = parseFloat(document.querySelector('.pricenumber').value)
+			const table = document.createElement('table')
+			table.classList.add('table')
+			table.style.cssText = 'border: 5px double black;'
+			for (let i = 0; i < priceNumber; i++) {
+				let tr = document.createElement('tr')
+				table.append(tr)
+				let input = document.createElement('input')
+				input.setAttribute('placeholder', 0)
+				tr.append(input)
+			}
+			divParent.append(table)
+			const button = document.createElement('button')
+			button.style.cssText = 'margin: 10px 0 10px 0'
+			button.innerHTML = 'get sum'
+			button.classList.add('averageValue')
+			button.setAttribute('onclick', 'getAvarageValue()')
+			divParent.append(button)
+		}
+
+		function getAvarageValue() {
+			const divParent = document.querySelector('.container')
+			const table = document.querySelectorAll('.table input')
+			let result = 0
+			for (const input of table) {
+				result += parseFloat(input.value)
+			}
+
+			const p = document.createElement('p')
+			p.innerHTML = `середнє значення: ${(result / table.length).toFixed(2)}`
+			divParent.append(p)
+		}
+
+		window.onload = () => {
+			document.querySelector('.gettable').onclick = createTableInput
+		}
+
+	</script>
+
+
+	<div class="container">
+		<label>
+			кількість оцінок
+			<input class="pricenumber" type="number" placeholder="0">
+		</label>
+		<br><br>
+		<button class="gettable">get table</button>
+		<hr>
+	</div>
+
+</body>
+
+</html>
