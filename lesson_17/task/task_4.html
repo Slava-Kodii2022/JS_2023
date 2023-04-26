@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+
+<body>
+	<h1>Задача №4</h1>
+
+	<p>
+		4. Склад. База товарів, які зберігаються на складі: назва товару, <br>
+		одиниця виміру, кількість, фірма виробник (назва, реєстраційний номер). <br>
+		Організувати реєстрацію/відвантаження товарів, <br>
+		фільтрація за назвою товару, фільтрація за назвою фірми
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+		class Product {
+			constructor(title, unit, quantity, manufacturer) {
+				this.title = title;
+				this.unit = unit;
+				this.quantity = quantity;
+				this.manufacturer = manufacturer;
+			}
+
+			toString() {
+				return `${this.title}; ${this.unit}: ${this.quantity}; ${this.manufacturer}<br>`;
+			}
+		}
+		// -------------
+		class Manufacturer {
+			constructor(name, registrationNumber) {
+				this.name = name;
+				this.registrationNumber = registrationNumber;
+			}
+
+			toString() {
+				return `${this.name}, ${this.registrationNumber}`;
+			}
+		}
+		// -------------
+		class Warehouse {
+			constructor() {
+				this.products = [];
+			}
+
+			registerProduct(title, unit, quantity, manufacturerName, manufacturerRegistrationNumber) {
+				const manufacturer = new Manufacturer(manufacturerName, manufacturerRegistrationNumber);
+				const product = new Product(title, unit, quantity, manufacturer);
+				this.products.push(product);
+			}
+
+			shipProduct(name, quantityToShip) {
+				const product = this.products.find(product => product.name === name);
+				if (product && product.quantity >= quantityToShip) {
+					product.quantity -= quantityToShip;
+					return true;
+				}
+				return false;
+			}
+
+			filterProductsByName(prodTitle) {
+				return this.products.filter(product => product.title === prodTitle);
+			}
+
+			filterProductsByManufacturer(manufacturerName) {
+				return this.products.filter(product => product.manufacturer.name === manufacturerName);
+			}
+
+			toString() {
+				return this.products.map(product => product.toString()).join('\n');
+			}
+		}
+		// -------------
+		const warehouse = new Warehouse();
+
+		// вводимо товар на склад
+		warehouse.registerProduct('Труби', 'мп', 50000, 'aquatherm GmbH', '2014125024')
+		warehouse.registerProduct('Фітинги', 'шт', 100000, 'aquatherm GmbH', '1040125011')
+		warehouse.registerProduct('Радіатори', 'шт', 10000, 'BRÖTJE', '6840774967')
+		warehouse.registerProduct('Каналізація', 'шт', 20000, 'Ostendorf', '3165868654')
+
+
+		// виводимо товари на складі
+		document.write(`<b>Усі товари на складі:</b><br> ${warehouse.toString()}`)
+
+
+		// фільтрація товарів за назвою
+		document.write(`<b>Фільтрація продукту за назвою 'Радіатори':</b><br> ${warehouse.filterProductsByName('Радіатори')}`);
+
+		// фільтрація товарів за виробником
+		document.write(`<b>Фільтрація продукту виробником 'aquatherm GmbH':</b><br> ${warehouse.filterProductsByManufacturer('aquatherm GmbH')}`);
+
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<body>
+	<h1>Задача №5</h1>
+
+	<p>
+		5. Особиста бібліотека. Картотека домашньої бібліотеки: <br>
+		дані книги (автори (піб, рік народження, короткий опис), <br>
+		назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). <br>
+		Реалізувати розділи бібліотеки (спеціальна література, хобі, домашнє господарство і т.д.), <br>
+		походження книги і наявність на даний час. Організувати додавання/вилучення книг та <br>
+		вибір книг за назвою, за ПІБ автора, за видавництвом.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class Avtor {
+			constructor(name, yearBirth, briefDescription) {
+				this.nameAvtor = name
+				this.yearBirth = yearBirth
+				this.briefDescription = briefDescription
+			}
+			toString() {
+				return `<br>Ім'я автора: ${this.nameAvtor}; рік народження: ${this.yearBirth}; короткий опис: ${this.briefDescription}`
+			}
+		}
+		class PublisherBook {
+			static num = 1
+			constructor(titlePublisherBook, yearPublication) {
+				this.title = titlePublisherBook
+				this.registrationNumber = PublisherBook.RegistrNumber
+				this.yearPublication = yearPublication
+			}
+			static get RegistrNumber() {
+				const numPeg = PublisherBook.num
+				PublisherBook.num++
+				return numPeg.toString().padStart(5, "0")
+			}
+			toString() {
+				return `<br>Назва: ${this.title}; реєстраційний номер: ${this.registrationNumber}; рік заснування: ${this.yearPublication}`
+			}
+		}
+		class Book {
+			constructor(name, yearBirth, briefDescription, bookTitle, genre, titlePublisherBook, yearPublication) {
+				this.avtor = new Avtor(name, yearBirth, briefDescription)
+				this.bookTitle = bookTitle
+				this.num = 1
+				this.genre = genre
+				this.publisherBook = new PublisherBook(titlePublisherBook, yearPublication)
+			}
+			toString() {
+				return `<b>Автор:</b> ${this.avtor},<br> <b>Назва книги:</b> ${this.bookTitle},<br> Жанр: ${this.genre},<br> <b>Видавництво:</b> ${this.publisherBook} <br>`
+			}
+		}
+		class Library {
+			constructor() {
+				this.books = []
+				this.bookgenre = []
+			}
+			addBook(someBook) {
+				this.books.push(someBook)
+				const genre = someBook.genre
+				if (this.bookgenre.length == 0) this.bookgenre.push(genre)
+				console.log(this.bookgenre);
+			}
+			originOfTheBook(nemeBook) {
+				this.books.filter(el => el.bookTitle === nemeBook ? document.write(`${el.avtor},залишилось книг = ${el.num}`) : ``)
+			}
+			searchBook(someBook) {
+				return this.books.filter(el => el.bookTitle === someBook)
+			}
+			searchBookForAvtor(someAvtor) {
+				const booksForAvtor = this.books.filter(el => el.avtor.nameAvtor === someAvtor);
+				if (booksForAvtor.length === 0) {
+					document.write(`<br>Автор ${someAvtor} в бібліотеці відсутній`);
+				} else {
+					document.write(`<br>Автор: ${someAvtor}. Перелік книг в бібліотеці:<br>`);
+					booksForAvtor.forEach(book => {
+						document.write(`${book.bookTitle}<br>`);
+					});
+				}
+			}
+			searchBookForPublisher(somePublisher) {
+				const BookForPublisher = this.books.filter(el => el.publisherBook.title === somePublisher);
+				if (BookForPublisher.length === 0) {
+					document.write(`<br>Книги даного видавництва ${somePublisher} в бібліотеці відсутній`);
+				} else {
+					document.write(`<br><b>Книги даного видавництва:</b> ${somePublisher}. Перелік книг в бібліотеці:<br>`);
+					BookForPublisher.forEach(book => {
+						document.write(`${book.bookTitle}<br>`);
+					});
+				}
+			}
+			deleteBook(someBook) {
+				const index = this.books.findIndex(el => el.bookTitle === someBook)
+				this.books.splice(index, 1)
+			}
+		}
+
+		// дані книги (автори (піб, рік народження, короткий опис), <br>
+		// назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). <br>
+		// Реалізувати розділи бібліотеки (спеціальна література, хобі, домашнє господарство і т.д.), <br>
+		// походження книги і наявність на даний час. Організувати додавання/вилучення книг та <br>
+		// вибір книг за назвою, за ПІБ автора, за видавництвом.
+
+
+		const book1 = new Book('Вахтанг Кіпіані', 1971, 'журналіст публіцист історик', 'СПРАВА ВАСИЛЯ СТУСА', 'Історія та політика', 'Виват', '2019')
+		const book2 = new Book('Олексій Чупа', 1986, 'український поет і прозаїк', 'АКВАРІУМ', 'Фантастика', 'Виват', '2016')
+		const book3 = new Book('Макс Кідрук', 1984, 'український письменник', 'БОТ', 'Наукова фантастика', 'Клуб сімейного дозвілля', '2012')
+		const book4 = new Book('Володимир Єшкілєв', 1965, 'прозаїк, кінодраматург, сценарис', 'КАЇН', 'ІСТОРИЧНІ РОМАНИ', 'Фолио', '2020')
+		const book5 = new Book('Марія Ткачівська', 1965, 'поетеса, науковиця, завідувачка кафедри', 'КНЯГИНЯ ОСТРОЗЬКА', 'Роман', 'Клуб сімейного дозвілля', '2021')
+		const book6 = new Book('Олег Сенцов', 1976, 'кінорежисер, сценарист та письменник', 'МАРКЕТЕР', 'Художня проза', 'Видавництво Старого Лева', '2019')
+		const book7 = new Book('Кузьма Скрябін', 1968, 'співак, композитор, поет, телеведучий, продюсер', 'Я, "Побєда" і Берлін', 'Українська література', 'Фолио', '2008')
+		const book8 = new Book('Тамара Горіха Зерня', 1976, 'українська письменниця', 'ДОЦЯ', 'Проза', 'Білка', '2018')
+		document.write(book1)
+		document.write(book2)
+		document.write(book3)
+		document.write(book4)
+		document.write(book5)
+		document.write(book6)
+		document.write(book7)
+		document.write(book8)
+		let mayLibrary = new Library
+		mayLibrary.addBook(book1)
+		mayLibrary.addBook(book2)
+		mayLibrary.addBook(book3)
+		mayLibrary.addBook(book4)
+		mayLibrary.addBook(book5)
+		mayLibrary.addBook(book6)
+		mayLibrary.addBook(book7)
+		mayLibrary.addBook(book8)
+		//-------
+		mayLibrary.originOfTheBook(`СПРАВА ВАСИЛЯ СТУСА`)
+		//-------
+		mayLibrary.searchBookForAvtor(`Джулія Беррі`)
+		//-------
+		mayLibrary.searchBookForPublisher(`Виват`)
+
+	</script>
+
+</body>
+
+</html>
