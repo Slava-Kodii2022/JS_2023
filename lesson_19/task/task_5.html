@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<style>
+	body {
+		background-image: linear-gradient(to right, rgb(0, 87, 184), rgb(255, 215, 0));
+	}
+
+	.res {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.tank {
+		position: absolute;
+		animation: tank 0.3s infinite linear;
+	}
+
+	@keyframes tank {
+		0% {
+			transform: translateY(0vh);
+		}
+
+		100% {
+			transform: translateY(100vh);
+		}
+	}
+
+	.item {
+		width: 60px;
+		height: 60px;
+		background-image: url(img/tank.png);
+		background-size: cover;
+	}
+
+	.explode {
+		background-image: url(img/explosion.png);
+		background-size: cover;
+		transform: scale(2);
+		transition: 0.1s;
+	}
+</style>
+
+<body>
+	<h1>Задача №5</h1>
+
+	<p>
+		5. Байрактар. <br>
+		З верхньої частини екрану у випадковій позиції по горизонталі з’являються танки, які їдуть вниз. <br>
+		При кліку на танк він вибухає і зникає з екрану.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div id="res" class="res"></div>
+
+	<script>
+
+		class Bayraktar {
+			constructor(maxNum, maxAnimation) {
+				this.maxNum = maxNum
+				this.maxAnimation = maxAnimation
+				this.tank = this.getBatleField()
+			}
+			getRandomAnimation() {
+				return Math.floor(Math.random() * this.maxAnimation)
+			}
+			getRandomPosition() {
+				return Math.floor(Math.random() * this.maxNum)
+			}
+			getBatleField() {
+				const tank = document.createElement('div')
+				tank.className = 'tank'
+				tank.style.left = `${this.getRandomPosition()}%`
+				tank.style.animationDelay = `0.${this.getRandomAnimation()}s`
+				tank.style.animationDuration = `5.${this.getRandomAnimation()}s`
+				this.item = document.createElement('div')
+				this.item.className = 'item'
+				this.item.style.animationDelay = `${this.getRandomAnimation()}s`
+				this.item.style.animationDuration = `0.${this.getRandomAnimation()}s`
+				tank.append(this.item)
+
+				const resContainer = document.getElementById('res')
+				resContainer.append(tank)
+
+				tank.onclick = this.getShot.bind(this)
+			}
+			getShot() {
+				this.item.classList.add('explode')
+				setInterval(() => {
+					this.item.classList.remove('explode')
+					this.item.classList.remove('item')
+				}, 300);
+			}
+
+		}
+
+		window.onload = function () {
+			setInterval(() => {
+				for (let i = 0; i < 3; i++) {
+					new Bayraktar(98, 100)
+				}
+			}, 5000);
+		}
+
+	</script>
+
+</body>
+
+</html>

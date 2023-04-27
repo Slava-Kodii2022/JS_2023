@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<style>
+	body {
+		background-image: url(img/435547.jpg);
+	}
+
+	.res {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.snowflakes {
+		width: 4px;
+		height: 4px;
+		background: #fff;
+		position: absolute;
+		animation: snowflakes 0.3s infinite linear;
+
+	}
+
+	@keyframes snowflakes {
+		0% {
+			transform: translateY(0vh) rotate(0deg);
+			opacity: 1;
+		}
+
+		70% {
+			opacity: 0.8;
+		}
+
+		100% {
+			transform: translateY(100vh) rotate(360deg);
+			opacity: 0.3;
+		}
+	}
+</style>
+
+<body>
+	<h1>Задача №3</h1>
+
+	<p>
+		3. Відобразити падаючий сніг. <br>
+		Сніжинка з’являється у верхній частині екрану і з випадковою швидкістю рухається вниз. <br>
+		Як тільки сніжинка досягає нижньої частини екрану вона знову повинна з’явитись у верхній частині екрану.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div id="res" class="res"></div>
+
+	<script>
+
+		class Snow {
+			constructor(maxNum, maxAnimation) {
+				this.maxNum = maxNum
+				this.maxAnimation = maxAnimation
+				this.snowflakes = this.getSnowflakes()
+			}
+			getRandomAnimation() {
+				return Math.floor(Math.random() * this.maxAnimation)
+			}
+			getRandomPosition() {
+				return Math.floor(Math.random() * this.maxNum)
+			}
+
+			getSnowflakes() {
+				this.snowflakes = document.createElement('div')
+				this.snowflakes.className = 'snowflakes'
+				this.snowflakes.style.left = `${this.getRandomPosition()}%`
+				this.snowflakes.style.animationDelay = `0.${this.getRandomAnimation()}s`
+				this.snowflakes.style.animationDuration = `2.${this.getRandomAnimation()}s`
+
+				const resContainer = document.getElementById('res')
+				resContainer.append(this.snowflakes)
+			}
+		}
+
+		window.onload = function () {
+			for (let i = 0; i < 100; i++) {
+				new Snow(100, 80)
+			}
+		}
+
+	</script>
+
+</body>
+
+</html>

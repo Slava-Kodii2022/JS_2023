@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<style>
+	.container {
+		display: flex;
+		gap: 20px;
+	}
+
+	.column {
+		border: 4px double rgb(51, 51, 51);
+		max-width: 300px;
+		width: 100%;
+		background-color: rgb(2, 253, 232);
+	}
+
+	.player {
+		display: flex;
+		gap: 10px;
+		padding: 5px;
+
+	}
+
+	.player__text {
+		text-align: center;
+		font-size: 25px;
+		order: 2;
+		flex-grow: 1;
+	}
+
+	.player__button {
+		flex-shrink: 0;
+		max-width: 70px;
+		width: 100%;
+	}
+
+	.player__button--red {
+		background-color: rgb(251, 2, 2);
+		order: 1;
+	}
+
+	.player__button--red::before {
+		content: "❰❰❰❰❰";
+	}
+
+	.player__button--green {
+		background-color: rgb(2, 251, 2);
+		order: 3;
+	}
+
+	.player__button--green::before {
+		content: "❱❱❱❱❱";
+	}
+</style>
+
+<body>
+	<h1>Задача №2</h1>
+
+	<p>
+		2. Дано список спортсменів. Потрібно сформувати список тих, які будуть брати участь у змаганні. <br>
+		При цьому є два стовпці. В одному відображені всі спортсмени, в іншому – список тих, хто був вибраний. <br>
+		При натисканні на зелену стрілку спортсмен переміщається у список для змагань. <br>
+		При натисканні на червону стрілку спортсмен переміщається у загальний список.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div class="container">
+	</div>
+
+	<script>
+
+		class SportsmenTeam {
+			constructor(teamList) {
+				this.greenTeam = teamList
+				this.redTeam = ['Heka(Женя)', 'Yevhen__']
+			}
+
+			teamColumn() {
+
+				this.column1 = document.createElement('div')
+				this.column1.classList.add('column')
+
+				this.column2 = document.createElement('div')
+				this.column2.classList.add('column')
+
+				this.targetContainer.append(this.column1)
+				this.targetContainer.append(this.column2)
+			}
+			clearColumn() {
+				this.column1.innerHTML = ''
+				this.column2.innerHTML = ''
+			}
+			createPlayer(player, column) {
+				let playerContainer = document.createElement('div')
+				playerContainer.classList.add('player')
+
+				let playerName = document.createElement('p')
+				playerName.classList.add('player__text')
+				playerName.innerHTML = player
+
+				let playerButton = document.createElement('button')
+				playerButton.classList.add('player__button', `player__button--${column}`)
+				playerButton.onclick = () => this.changeTeam(player, column)
+
+
+				playerContainer.append(playerName)
+				playerContainer.append(playerButton)
+
+				return playerContainer
+			}
+			fillColumn() {
+
+				this.clearColumn()
+
+				for (let player of this.greenTeam) {
+					this.column1.append(this.createPlayer(player, 'green'))
+				}
+				for (let player of this.redTeam) {
+					this.column2.append(this.createPlayer(player, 'red'))
+				}
+			}
+
+			changeTeam(player, column) {
+				if (column === 'green') {
+					this.redTeam.push(player)
+					let goodbyePlayer = this.greenTeam.indexOf(player)
+					this.greenTeam.splice(goodbyePlayer, 1)
+				}
+				else {
+					this.greenTeam.push(player)
+					let goodbyePlayer = this.redTeam.indexOf(player)
+					this.redTeam.splice(goodbyePlayer, 1)
+				}
+				this.fillColumn()
+			}
+
+
+			render(containerClass) {
+				this.targetContainer = document.querySelector(containerClass)
+				this.teamColumn()
+				this.fillColumn()
+			}
+		}
+		let teamList = ['DsrEgl(Руслан)', 'Vladislav(xeks)', 'Haelgi(Олег)', 'Artemii_(Artem)', 'Tatar(Vitaliy)', 'dees531(Денис Р.)']
+
+		window.onload = () => {
+			new SportsmenTeam(teamList).render('.container')
+		}
+	</script>
+
+</body>
+
+</html>

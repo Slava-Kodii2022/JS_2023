@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+<style>
+	body {
+		background-image: url(img/7887969.jpg);
+		background-repeat: no-repeat;
+		background-position: top;
+	}
+
+	.res {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.star {
+		position: absolute;
+		width: 3px;
+		height: 3px;
+		background: #fff;
+		opacity: 0;
+		animation: star 1 linear;
+	}
+
+	@keyframes star {
+		0% {
+			opacity: 0.5;
+			transform: scale(0.5) rotate(45deg);
+		}
+
+		50% {
+			opacity: 1;
+			transform: scale(1) rotate(45deg);
+		}
+
+		100% {
+			opacity: 0;
+			transform: scale(0) rotate(45deg);
+		}
+	}
+</style>
+
+<body>
+	<h1>Задача №4</h1>
+
+	<p>
+		4. Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій частині екрану. <br>
+		Кожна зірка з певним кроком і інтервалом збільшується від мінімального до максимального розміру. <br>
+		Як тільки досягнути максимального розміру зірочка повинна з’являтися у іншій випадковій позиції.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div id="res" class="res"></div>
+
+	<script>
+
+		class Stars {
+			constructor(leftPosition, topPosition, maxAnimation) {
+				this.maxAnimation = maxAnimation
+				this.leftPosition = leftPosition
+				this.topPosition = topPosition
+				this.stars = this.getStars()
+			}
+			getRandomLeftPosition() {
+				return Math.floor(Math.random() * this.leftPosition)
+			}
+			getRandomTopPosition() {
+				return Math.floor(Math.random() * this.topPosition)
+			}
+			getRandomAnimation() {
+				return Math.floor(Math.random() * this.maxAnimation)
+			}
+			getStars() {
+				this.star = document.createElement('div')
+				this.star.className = 'star'
+				this.star.style.left = `${this.getRandomLeftPosition()}%`
+				this.star.style.top = `${this.getRandomTopPosition()}%`
+				this.star.style.animationDelay = `1.${this.getRandomAnimation()}s`
+				this.star.style.animationDuration = `${this.getRandomAnimation()}s`
+
+				const resContainer = document.getElementById('res')
+				resContainer.append(this.star)
+			}
+		}
+
+		window.onload = function () {
+			setInterval(() => {
+				for (let i = 0; i < 100; i++) {
+					new Stars(100, 80, 10)
+				}
+			}, 3000)
+		}
+
+	</script>
+
+</body>
+
+</html>

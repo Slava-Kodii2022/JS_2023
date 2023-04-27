@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<style>
+	.container {
+		display: flex;
+		gap: 20px;
+	}
+
+	.product-container {
+		border: 5px solid transparent;
+		cursor: pointer;
+	}
+
+	.product-container-green {
+		border-color: rgb(0, 214, 0);
+	}
+
+	.top-title {
+		background-color: rgba(0, 214, 0, 0.8);
+		width: 100%;
+		padding: 5px 0;
+	}
+
+	.img-title {
+		color: rgba(10, 10, 231);
+		font-weight: 800;
+		text-align: center;
+		font-size: 35px;
+	}
+
+	.img-container {
+		width: 250px;
+		height: 250px;
+		overflow: hidden;
+	}
+
+	.img {
+		max-width: 100%;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: center center;
+	}
+
+	.info-container {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.name-text {
+		color: rgb(69, 69, 69);
+		font-size: 30px;
+		text-align: center;
+	}
+
+	.price-text {
+		color: red;
+		font-size: 20px;
+		text-align: center;
+		background-color: rgba(0, 214, 0, 0.8);
+	}
+</style>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Відображаємо картки товарів, які користувач може вибирати. Вибраний товар має зелену рамку
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class ProductCard {
+			constructor({ imgSrc, topTitle, name, price }) {
+				this.img = imgSrc
+				this.title = topTitle
+				this.name = name
+				this.price = price
+
+			}
+
+			render(containerClass) {
+				let targetContainer = document.querySelector(containerClass)
+
+				let productContainer = document.createElement('div')
+				productContainer.classList.add('product-container')
+				productContainer.onclick = () => productContainer.classList.toggle('product-container-green')
+
+				let topTitleContainer = document.createElement('div')
+				topTitleContainer.classList.add('top-title')
+
+				let topTitle = document.createElement('h5')
+				topTitle.innerText = this.title
+				topTitle.classList.add('img-title')
+				//---------
+				let imgContainer = document.createElement('div')
+				imgContainer.classList.add('img-container')
+				let img = document.createElement('img')
+				img.src = this.img
+				img.classList.add('img')
+				//---------
+				let infoContainer = document.createElement('div')
+				infoContainer.classList.add('info-container')
+
+				let nameText = document.createElement('p')
+				nameText.classList.add('name-text')
+				nameText.innerText = this.name
+
+				let price = document.createElement('p')
+				price.classList.add('price-text')
+				price.innerText = this.price
+
+				imgContainer.append(img)
+				topTitleContainer.append(topTitle)
+				infoContainer.prepend(nameText)
+				infoContainer.append(price)
+
+				productContainer.prepend(topTitleContainer)
+				productContainer.append(imgContainer)
+				productContainer.append(infoContainer)
+				targetContainer.append(productContainer)
+			}
+		}
+
+		const productList = [
+			{
+				imgSrc: 'img/blue_pipe.jpg',
+				topTitle: 'aquatherm',
+				name: 'blue pipe',
+				price: '1€'
+			},
+			{
+				imgSrc: 'img/green_pipe.jpg',
+				topTitle: 'aquatherm',
+				name: 'green pipe',
+				price: '2€'
+			},
+			{
+				imgSrc: 'img/red_pipe.jpg',
+				topTitle: 'aquatherm',
+				name: 'red pipe',
+				price: '3€'
+			},
+			{
+				imgSrc: 'img/ti_pipe.jpg',
+				topTitle: 'aquatherm',
+				name: 'TI pipe',
+				price: '4€'
+			}
+		]
+
+
+		window.onload = function () {
+			for (let item of productList) {
+				new ProductCard(item).render('.container')
+			}
+		}
+
+	</script>
+
+	<div class="container">
+	</div>
+
+</body>
+
+</html>
