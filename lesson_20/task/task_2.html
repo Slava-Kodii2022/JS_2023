@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<style>
+	#container {
+		padding: 20px;
+		display: flex;
+		gap: 50px;
+	}
+
+	.list-block {
+		border: 4px double green;
+		color: red;
+		padding: 15px;
+		background-color: rgba(253, 253, 2, 0.404);
+	}
+
+	.list-block__header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 20px 30px;
+		margin-bottom: 30px;
+	}
+
+	.list-block__label {
+		font-size: 30px;
+		font-weight: 700;
+	}
+
+	.list-block__title {
+		font-size: 26px;
+		font-weight: 700;
+		flex: 1 0 100%;
+	}
+
+	.list-block__input {
+		border: 4px double gray;
+		height: 36px;
+		font-size: 30px;
+		padding: 0px 10px;
+	}
+
+	.list-block__input:focus {
+		outline: black;
+	}
+
+	.list-block__input:placeholder {
+		color: red;
+	}
+
+	.list-block__item {
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+	.list-block__item:not(:last-child) {
+		margin-bottom: 10px;
+	}
+</style>
+
+<body>
+	<h1>Задача №2</h1>
+
+	<p>
+		2. Динамічний пошук. Є список працівників і поле пошуку. <br>
+		При введенні відображаються усі, які містять вказаний фрагмент
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div class="block__container">
+		<div id="container"></div>
+	</div>
+
+
+	<script>
+
+		class DinamicSearch {
+			constructor(workersList) {
+				this.workersList = workersList
+			}
+			search() {
+				const word = this.searchBlockInput.value.toLowerCase()
+				this.currentList = this.workersList.filter((name) => name.toLowerCase().includes(word))
+
+				this.bodyBlock.innerHTML = ''
+				this.bodyBlock.append(this.createList(this.currentList))
+			}
+			createList(namesArray) {
+				const list = document.createElement('ul')
+				list.className = 'list-block__list'
+
+				for (const name of namesArray) {
+					const li = document.createElement('li')
+					li.className = 'list-block__item'
+					li.innerText = name
+					list.append(li)
+				}
+
+				return list
+			}
+			createListBlock(namesArray) {
+				const listBlock = document.createElement('div')
+				listBlock.className = 'list-block'
+
+				const searchBlock = document.createElement('div')
+				searchBlock.className = 'list-block__header'
+				listBlock.append(searchBlock)
+
+				const searchBlockLabel = document.createElement('label')
+				searchBlockLabel.classList = 'list-block__label'
+				searchBlockLabel.innerText = "Ім'я"
+				searchBlock.append(searchBlockLabel)
+
+				this.searchBlockInput = document.createElement('input')
+				this.searchBlockInput.type = 'text'
+				this.searchBlockInput.placeholder = 'Я шукаю...'
+				this.searchBlockInput.classList = 'list-block__input'
+				searchBlock.append(this.searchBlockInput)
+
+				const searchBlockTitle = document.createElement('h3')
+				searchBlockTitle.className = 'list-block__title'
+				searchBlockTitle.innerText = 'Працівники :'
+				searchBlock.append(searchBlockTitle)
+
+				this.searchBlockInput.oninput = this.search.bind(this)
+
+				this.bodyBlock = document.createElement('div')
+				this.bodyBlock.className = 'list-block__body'
+				listBlock.append(this.bodyBlock)
+
+				this.bodyBlock.append(this.createList(namesArray))
+
+				return listBlock
+			}
+
+			render(id) {
+				const container = document.getElementById(id)
+				container.append(this.createListBlock(this.workersList))
+			}
+		}
+
+		const workers = ['DsrEgl (Руслан)', 'Dalas [Тарас]', 'Vladislav (xeks)', 'Haelgi (Олег)', 'Artemii_(Artem)', 'Tatar (Vitaliy)', 'dees531 (Денис Р.)']
+
+		window.onload = () => {
+			const w1 = new DinamicSearch(workers)
+			w1.render('container')
+		}
+
+	</script>
+
+</body>
+
+</html>

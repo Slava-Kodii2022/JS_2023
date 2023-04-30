@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<style>
+	a {
+		cursor: pointer;
+	}
+
+	span {
+		font-size: 20px;
+	}
+
+	.task-container {
+		max-width: 1030px;
+		margin: 0 auto;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.task-text {
+		border-radius: 10px;
+		background-color: #D7E1E9;
+		padding: 15px;
+	}
+
+	li {
+		margin-bottom: 7px;
+	}
+
+	ul {
+		margin-bottom: 20px;
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	#product {
+		border: 4px double #ef3c3c;
+		padding: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+		border-radius: 5px;
+	}
+
+	.product-description {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.product-img {
+		max-width: 180px;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.product-title {
+		font-size: 25px;
+		font-weight: 600;
+		color: red;
+	}
+
+	.product-register {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.product-btn {
+		border: 4px double #141313;
+		width: 35px;
+		height: 35px;
+		font-size: 22px;
+		font-weight: 500;
+		transition: all 0.4s ease 0s;
+		border-radius: 3px;
+	}
+
+	.product-btn:disabled {
+		opacity: 0.5;
+	}
+
+	.product-btn:hover {
+		background-color: #e8eef3;
+	}
+
+	.product-val,
+	.product-sum {
+		font-weight: 700;
+		font-size: 20px;
+	}
+
+	.product-price {
+		color: rgba(251, 5, 5, 0.8);
+		font-size: 25px;
+		font-weight: 500;
+		padding-left: 10px;
+	}
+</style>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Розробити елемент для вводу кількості вибраного товару за зразком (мінімальна <br>
+		кількість 1, максимальна кількість 10, при перевищенні блокувати кнопку)
+	</p>
+
+	<h2>Розв`язок:</h2>
+	<div class="task">
+		<div class="task-container">
+			<div id="product"></div>
+		</div>
+	</div>
+
+	<script>
+
+		class Product {
+			constructor(minProdValue, maxProdValue, prodPrice, imageSrc) {
+				this.minProdValue = minProdValue
+				this.maxProdValue = maxProdValue
+				this.prodPrice = prodPrice
+				this.imageSrc = imageSrc
+				this.actualProdValue = 0
+			}
+			set ActualProdValue(newVal) {
+				this.actualValue.innerText = newVal;
+			}
+			resString(val) {
+				return ` ${val * this.prodPrice} грн.`
+			}
+			set SummaryProdValue(newSum) {
+				this.summaryProdValue.innerHTML = this.resString(newSum)
+			}
+			controlButtonState() {
+				if (this.actualProdValue <= 0) {
+					this.buttonMinus.setAttribute('disabled', 'true')
+				} else if (this.actualProdValue >= 10) {
+					this.buttonPlus.setAttribute('disabled', 'true')
+				} else {
+					this.buttonMinus.removeAttribute('disabled')
+					this.buttonPlus.removeAttribute('disabled')
+				}
+			}
+			increaseActualProdValue() {
+				this.ActualProdValue = ++this.actualProdValue
+			}
+			decreaseActualProdValue() {
+				this.ActualProdValue = --this.actualProdValue
+			}
+			render(productId) {
+				const container = document.getElementById(productId);
+
+				const prodDescription = document.createElement('div')
+				prodDescription.className = "product-description"
+				container.append(prodDescription)
+
+				const prodImage = document.createElement('img')
+				prodImage.src = this.imageSrc
+				prodImage.className = 'product-img'
+				prodDescription.append(prodImage)
+
+				const prodTitle = document.createElement('h4')
+				prodTitle.className = 'product-title'
+				prodTitle.innerText = 'aquatherm red pipe'
+				prodDescription.append(prodTitle)
+
+				const prodRegister = document.createElement('div')
+				prodRegister.className = 'product-register'
+				container.append(prodRegister)
+
+				this.buttonMinus = document.createElement('button')
+				this.buttonMinus.className = 'product-btn'
+				this.buttonMinus.innerText = '-'
+				prodRegister.append(this.buttonMinus)
+				this.buttonMinus.onclick = () => {
+					this.decreaseActualProdValue()
+					this.SummaryProdValue = this.actualProdValue
+					this.controlButtonState()
+				}
+
+				this.actualValue = document.createElement("div");
+				this.actualValue.className = "product-val";
+				this.ActualProdValue = this.actualProdValue
+				this.controlButtonState()
+				prodRegister.append(this.actualValue)
+
+				this.buttonPlus = document.createElement('button')
+				this.buttonPlus.className = 'product-btn'
+				this.buttonPlus.innerText = '+'
+				prodRegister.append(this.buttonPlus)
+				this.buttonPlus.onclick = () => {
+					this.increaseActualProdValue()
+					this.SummaryProdValue = this.actualProdValue
+					this.controlButtonState()
+				}
+
+				const prodSum = document.createElement('div')
+				prodSum.className = 'product-sum'
+				prodSum.innerText = 'До оплати:'
+
+				this.summaryProdValue = document.createElement('span')
+				this.summaryProdValue.className = 'product-price'
+				this.SummaryProdValue = this.actualProdValue
+				prodSum.append(this.summaryProdValue)
+
+				container.append(prodSum)
+			}
+		}
+
+		window.onload = () => {
+			const product = new Product(1, 10, 150, 'img/red_pipe.jpg')
+			product.render("product")
+			console.log(product)
+		}
+
+	</script>
+
+</body>
+
+</html>

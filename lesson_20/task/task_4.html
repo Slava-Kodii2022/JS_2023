@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+<style>
+	button {
+		text-transform: uppercase;
+		text-align: center;
+		padding: 10px;
+		font-weight: 900;
+		border-radius: 10px;
+		border: 2px solid rgb(25, 5, 251);
+		color: #07c2fb;
+		background-color: transparent;
+		transition: background-color 0.5s ease 0s;
+		margin: 5px;
+	}
+
+	button:hover {
+		color: white;
+		border: 2px solid rgba(26, 5, 255, 0.5);
+		background-color: #07fbd6;
+		cursor: pointer;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		justify-content: center;
+	}
+
+	.item {
+		display: flex;
+		gap: 20px;
+	}
+
+	label {
+		padding: 10px;
+	}
+
+	input {
+		padding: 5px;
+		font-size: 20px;
+		border: 4px double green;
+		border-radius: 5px;
+		background-color: hsla(126, 100%, 50%, 0.5);
+	}
+
+	span {
+		padding: 5px;
+		font-size: 20px;
+		background-color: hsla(126, 100%, 50%, 0.5);
+	}
+</style>
+
+<body>
+	<h1>Задача №4</h1>
+
+	<p>
+		4. Розробити ToDo менеджер. Користувач вводить текст задачі та пріоритетність. <br>
+		Відображається список доданих задач з можливістю видалення задач та сортування за пріоритетністю.<br>
+		<b>PS: Це завдання також було підготовлено під наглядом дружини &#x1f60a;</b>
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div class="container">
+		<h4 class="title__container">Нова задача</h4>
+		<div class="item">
+			<label for="title">Текст задачі</label>
+			<input type="text" id="title" value="">
+		</div>
+		<div class="item">
+			<label for="priority">Пріоритетність</label>
+			<input type="text" id="priority" value="">
+		</div>
+		<div>
+			<button id="add__btn">Додати задачу</button>
+		</div>
+		<h4 class="title__container">Список задач</h4>
+		<div class="item">
+			<div class="list">
+				<div>
+					<button id="clear__all">Очистити</button>
+				</div>
+				<div id="container"></div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+		function clearAll() {
+			const button = this
+			const list = button.closest('.list')
+			list.lastElementChild.innerHTML = ''
+		}
+		function onTaskDelete() {
+			this.parentElement.remove()
+		}
+		function onAddTask() {
+			const taskTitle = document.getElementById('title').value
+			const taskPriority = document.getElementById('priority').value
+			const div = document.createElement('div')
+			const span = document.createElement('span')
+			span.innerText = `${taskTitle} - ${taskPriority}`
+			div.append(span)
+			//
+			const btn = document.createElement('button')
+			btn.innerText = 'Delete'
+			btn.onclick = onTaskDelete
+			div.append(btn)
+			container.append(div)
+		}
+		add__btn.onclick = onAddTask
+		clear__all.onclick = clearAll
+
+	</script>
+
+</body>
+
+</html>
