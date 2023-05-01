@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Дано 10 рядків тексту «Hello!» у окремих div. <br>
+		При кліку на якийсь із них усі наступні повинні бути зафарбовані у червоний колір.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div class="container" id="task"></div>
+
+	<script>
+
+		const container = document.getElementById('task');
+		const divs = [];
+
+		for (let i = 0; i < 8; i++) {
+			divs[i] = document.createElement('div');
+			divs[i].innerHTML = '«Hello!»';
+			divs[i].style.margin = '15px';
+			divs[i].style.padding = '15px';
+			divs[i].style.border = '6px double gray';
+			divs[i].style.display = 'inline-block';
+			divs[i].style.cursor = 'pointer';
+
+			divs[i].onclick = function () {
+				for (let j = i; j < 8; j++) {
+					divs[j].style.backgroundColor = 'red';
+				}
+			}
+
+			container.appendChild(divs[i]);
+		}
+
+	</script>
+
+</body>
+
+</html>

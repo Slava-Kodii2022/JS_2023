@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<style>
+	.container {
+		margin-top: 30px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+	}
+
+	form>div {
+		margin-bottom: 15px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	label {
+		margin-right: 20px;
+		font-weight: 700;
+		font-size: 20px;
+		text-shadow: 2px 2px 5px rgba(144, 0, 255, 0.5);
+	}
+
+	input {
+		font-weight: 500;
+		font-size: 20px;
+		height: 30px;
+		width: 300px;
+		padding: 0 8px;
+		border-radius: 5px;
+		border: 4px double #3b3838;
+	}
+</style>
+
+<body>
+	<h1>Задача №5</h1>
+
+	<p>
+		5. Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити і вставити на сторінку)
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div class="container" id="container"></div>
+
+	<script>
+
+		class CreateHTMLElem {
+			static createElement({ tag, attributes, props, events }) {
+				const element = document.createElement(tag)
+				if (attributes) {
+					for (const attributKey in attributes) {
+						element.setAttribute(attributKey, attributes[attributKey])
+					}
+				}
+				if (props) {
+					for (const propKey in props) {
+						element[propKey] = props[propKey]
+					}
+				}
+				if (events) {
+					for (const event in events) {
+						element.addEventListener(event, events[event])
+					}
+				}
+				return element
+			}
+		}
+
+		class CreateInputList {
+			constructor() { }
+			static createBlock(textLabel, textInputPlaceholder) {
+				const block = CreateHTMLElem.createElement({ tag: 'div' })
+
+				const label = CreateHTMLElem.createElement({
+					tag: 'label',
+					props: { innerText: textLabel },
+					attributes: { for: textLabel },
+				})
+				block.append(label)
+
+				const input = CreateHTMLElem.createElement({
+					tag: 'input',
+					props: { placeholder: textInputPlaceholder },
+					attributes: { id: textLabel },
+				})
+				block.append(input)
+
+				return { block, label, input }
+			}
+		}
+
+		class UserBlank {
+			constructor(inputArray) {
+				this.inputArray = inputArray
+				this.inputs = []
+			}
+
+			formClick(el) {
+				if (el.target.closest('input')) {
+					el.target.value = 0
+				}
+			}
+
+			createForm() {
+				this.form = CreateHTMLElem.createElement({
+					tag: 'form',
+					events: { click: this.formClick.bind(this) },
+				})
+				for (let i = 0; i < this.inputArray.length; i++) {
+					const block = CreateInputList.createBlock(
+						this.inputArray[i],
+						`Введіть ${this.inputArray[i].toLowerCase()}`
+					)
+					this.input = block.input;
+					this.inputs.push(this.input)
+					this.form.append(block.block);
+				}
+				return this.form
+			}
+
+			render(id) {
+				const taskList = document.getElementById(id)
+				taskList.append(this.createForm())
+			}
+		}
+
+		const array = [
+			'Вік',
+			'Зріст',
+			'Вага',
+			'Заробітня плата',
+			'Стаж',
+			'Номер відділу',
+			'Порядковий номер'
+		]
+
+		const userBlank = new UserBlank(array)
+		userBlank.render('container')
+		console.log(userBlank)
+
+	</script>
+
+</body>
+
+</html>

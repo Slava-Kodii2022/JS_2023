@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<style>
+	.container {
+		display: flex;
+		gap: 20px;
+		padding-top: 30px;
+	}
+
+	li {
+		padding: 5px 10px 5px 10px;
+		text-align: center;
+	}
+
+	ol {
+		border-radius: 5px;
+		border: 4px double darkblue;
+		font-size: 25px;
+		font-weight: 900;
+	}
+
+	button {
+		padding: 10px 25px 10px 25px;
+		border-radius: 5px;
+		text-transform: uppercase;
+		text-align: center;
+		align-self: end;
+		cursor: pointer;
+		color: rgb(174, 13, 233);
+		background-color: rgb(4, 237, 254);
+		transition: all 0.8s ease 0s;
+		font-size: 20px;
+	}
+
+	button:hover {
+		background-color: yellow;
+	}
+
+	.odd {
+		color: rgb(251, 3, 184);
+		border: 4px double rgb(251, 3, 184);
+		background-color: rgba(0, 255, 0, 0.3);
+	}
+
+	.couples {
+		color: rgb(0, 249, 0);
+		border: 4px double rgb(0, 249, 0);
+		background-color: rgba(251, 0, 192, 0.3)
+	}
+</style>
+
+<body>
+	<h1>Задача №3</h1>
+
+	<p>
+		3. Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами (кількість <br>
+		елементів у списку випадкова від 1 до 10, елементи випадкові – від 1 до 100). <br>
+		При натисненні на кнопку нумеровані списки з парною кількістю елементів <br>
+		зафарбувати у зелений колір, інші у червоний.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div class="container"></div>
+
+	<script>
+
+		class MakeLists {
+			constructor() {
+				this.minNum = 1
+				this.maxNum = 10
+				this.minElementVal = 1
+				this.maxElementVal = 100
+			}
+
+			getRandomNumber(min, max) {
+				return min + Math.floor(Math.random() * (max - min + 1))
+			}
+
+			makeArr(minNum, maxNum, minElementVal, maxElementVal) {
+				let array = []
+				let arrayLength = this.getRandomNumber(minNum, maxNum)
+				for (let i = 0; i < arrayLength; i++) {
+					let element = this.getRandomNumber(minElementVal, maxElementVal);
+					array.push(element)
+				}
+				return array
+			}
+
+			makeList(array) {
+				const ol = document.createElement('ol')
+				for (const el of array) {
+					const li = document.createElement('li')
+					li.innerText = el
+					ol.append(li)
+				}
+				return ol
+			}
+
+			checkingList() {
+				if ((this.list01.children).length % 2) this.list01.classList.add('odd')
+				else this.list01.classList.add('couples')
+
+				if ((this.list02.children).length % 2) this.list02.classList.add('odd')
+				else this.list02.classList.add('couples')
+
+				if (this.list03.children.length % 2) this.list03.classList.add("odd")
+				else this.list03.classList.add("couples")
+
+				if (this.list04.children.length % 2) this.list04.classList.add("odd")
+				else this.list04.classList.add("couples")
+
+				if ((this.list05.children).length % 2) this.list05.classList.add('odd')
+				else this.list05.classList.add('couples')
+			}
+
+			render(targetSelector) {
+				const taskMain = document.querySelector(targetSelector)
+
+				let array01 = this.makeArr(this.minNum, this.maxNum, this.minElementVal, this.maxElementVal)
+				this.list01 = this.makeList(array01)
+				taskMain.append(this.list01)
+
+				let array02 = this.makeArr(this.minNum, this.maxNum, this.minElementVal, this.maxElementVal)
+				this.list02 = this.makeList(array02)
+				taskMain.append(this.list02)
+
+				let array03 = this.makeArr(this.minNum, this.maxNum, this.minElementVal, this.maxElementVal)
+				this.list03 = this.makeList(array03)
+				taskMain.append(this.list03)
+
+				let array04 = this.makeArr(this.minNum, this.maxNum, this.minElementVal, this.maxElementVal)
+				this.list04 = this.makeList(array04)
+				taskMain.append(this.list04)
+
+				let array05 = this.makeArr(this.minNum, this.maxNum, this.minElementVal, this.maxElementVal)
+				this.list05 = this.makeList(array05)
+				taskMain.append(this.list05)
+
+				const button = document.createElement('button')
+				button.innerText = "check data";
+				button.addEventListener('click', this.checkingList.bind(this))
+				taskMain.append(button)
+			}
+		}
+
+		let table = new MakeLists()
+		table.render('.container')
+
+	</script>
+
+</body>
+
+</html>
