@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+
+<body>
+	<h1>Задача №4</h1>
+
+	<p>
+		4. Задаємо користувачу задачу з додавання двох чисел. <br>
+		Визначити скільки секунд було використано для розв’язання задачі.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function getRandom(min, max) {
+			return Math.floor(Math.random() * (max - min + 1) + min)
+		}
+		function getSum(min, max) {
+			let start = Date.now()
+			let rand1 = getRandom(min, max)
+			let rand2 = getRandom(min, max)
+			let userResult = parseInt(prompt(`${rand1} + ${rand2}`))
+			let end = Date.now()
+			let totalTime = end - start
+			document.write(`Для розв'язання задачі витратили часу: ${(totalTime / 1000).toFixed(2)} секунд`)
+		}
+		const minNum = 1
+		const maxNum = 10
+		getSum(minNum, maxNum)
+
+	</script>
+
+	</script>
+
+</body>
+
+</html>

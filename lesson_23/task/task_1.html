@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Користувач іде у відпустку на 56 днів. Визначити дату на момент його повернення.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		const currentDate = new Date()
+		const vacation = 56
+		console.log(currentDate.getDate())
+
+		function getReturnDate(date, vac) {
+			return new Date(date.setDate(date.getDate() + vac))
+		}
+
+		let backToWork = getReturnDate(currentDate, vacation)
+
+		document.write(
+			`Дата повернення користувача:<b> ${backToWork.toLocaleDateString()}</b>р.`
+		)
+
+	</script>
+
+</body>
+
+</html>

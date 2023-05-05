@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<body>
+	<h1>Задача №2</h1>
+
+	<p>
+		2. Дано дата виробництва йогурта (вводимо рік, місяць, день) та кількість днів придатності. <br>
+		Визначити чи є він придатним на даний момент.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		function getExpirationDate() {
+			const year = parseInt(prompt('Введіть рік виробництва йогурту', '0000'));
+			const month = parseInt(prompt('Введіть місяць виробництва йогурту', '1-12'));
+			const day = parseInt(prompt('Введіть день виробництва йогурту', '1-31'));
+			const garantDay = parseInt(prompt('Введіть кількість днів придатності йогурту', '0'));
+			const startDay = new Date(year, month - 1, day);
+			const currentDate = startDay.setDate(garantDay);
+			if (currentDate < new Date()) {
+				return 'Йогурт прострочений <b>&#9746</b>'
+			} else return 'Йогурт придатний <b>&#9745</b>'
+		}
+		const result = getExpirationDate();
+		document.write(result);
+
+	</script>
+
+</body>
+
+</html>
