@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_4</title>
+</head>
+
+<body>
+	<h1>Задача №4</h1>
+
+	<p>
+		4. Використовуючи один з АРІ <br>
+		https://github.com/public-apis/public-apis#animals <br>
+		та функцію fetch організувати завантаження та відображення даних
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div id="container"></div>
+
+	<script>
+
+		const url = 'https://dog.ceo/api/breeds/image/random'
+
+		function createImage(selector, srcImage) {
+			const container = document.querySelector(selector)
+			const image = document.createElement('img')
+			image.setAttribute('src', srcImage)
+			container.append(image)
+		}
+
+		async function requestData(url) {
+			try {
+				await fetch(url)
+					.then((response) => response.json())
+					.then((data) => createImage('#container', data.message))
+			} catch (error) {
+				console.log(error.message)
+			} finally {
+				console.log('ПЕСы')
+			}
+		}
+
+		requestData(url)
+
+	</script>
+
+	</script>
+
+</body>
+
+</html>

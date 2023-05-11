@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_12</title>
+</head>
+
+<body>
+	<h1>Задача №12</h1>
+
+	<p>
+		12. Зберігати у пам’яті список справ, які користувачу треба виконати (зберігати у localStorage). <br>
+		Періодично випадковим чином вибирати якусь з справ і виводити користувачу (з використанням confirm). <br>
+		Якщо користувач натискає на «Ок», то видаляти цю задачу.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		let tasksList = [
+			'Повторити HTML, CSS',
+			'Виконати домашнє завдання JS',
+			'Повторювати JS',
+			'Виконувати вправи для очей'
+		]
+		function saveInLocalStorage(tasks) {
+			localStorage.setItem('tasks', JSON.stringify(tasks))
+		}
+		saveInLocalStorage(tasksList)
+
+		function random(min, max) {
+			return min + Math.floor(Math.random() * (max - min + 1))
+		}
+
+		function intervalList() {
+			let interval = setInterval(() => {
+				let tasks = JSON.parse(localStorage.getItem('tasks'))
+				let randomTask = random(0, tasks.length - 1)
+				if (confirm(tasks[randomTask])) {
+					tasks.splice(randomTask, 1)
+					saveInLocalStorage(tasks)
+				}
+				if (tasks.length === 0) {
+					clearInterval(interval)
+					alert('0 tasks')
+				}
+			}, random(1, 4) * 1000);
+		}
+		intervalList()
+
+	</script>
+</body>
+
+</html>

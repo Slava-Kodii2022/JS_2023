@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Дано клас PhoneNumber. Створити функцію перетворення до string, при якому на основі <br>
+		номера виводиться оператор (050…. => MTC, 096… => Kyivstar, ….)
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		class PhoneNumber {
+			constructor(number) {
+				this.number = number
+				this.phoneOperator = this.foundOperator(number)
+			}
+			foundOperator(number) {
+				const reg = /^.*(0[0-9]{2}).+$/
+				return number.replace(reg, '$1')
+			}
+			[Symbol.toPrimitive](hint) {
+				let result
+				if (hint == 'string') {
+					switch (this.phoneOperator) {
+						case '050':
+						case '066':
+						case '099':
+						case '095':
+							result = 'Водафон'
+							break
+						case '039':
+						case '067':
+						case '068':
+						case '096':
+						case '097':
+						case '098':
+							result = 'Київстар'
+							break
+						default:
+							result = 'Інший оператор мобільного зв"язку'
+					}
+				} else if (hint == 'number') {
+					result = +this.number
+				} else result = null
+				return result
+			}
+		}
+
+		const operator = new PhoneNumber('+38-(066)-55-55-123')
+
+		document.write(
+			`оператор:<b> ${operator}</b>`
+		)
+
+	</script>
+
+</body>
+
+</html>

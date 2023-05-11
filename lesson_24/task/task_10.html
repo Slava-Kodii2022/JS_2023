@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_10</title>
+</head>
+
+<body>
+	<h1>Задача №10</h1>
+
+	<p>
+		10. Дано два списки прізвищ студентів, що відвідують гуртки з математики і історії. <br>
+		Підрахувати скільки студентів з гуртка з історії також відвідують гурток з математики. <br>
+		Також підрахувати скільки всього студентів відвідують хоча б один гурток.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		let mathWorkshop = ['Юлія#7156', 'Olesia#3018', 'Mariia#7447', 'Maria Designerka', 'Daria Bilan', '=^.^=(Дар"я)', 'Anna Lovatto', 'Євгенія Р', '=Liza=', 'Лилия Кобзар']
+		let historyWorkshop = ['Olesia#3018', 'Daria Bilan', 'Mariia#7447']
+
+		function studentWorkshop(math, history) {
+			let map = new Map()
+			for (const el of math) {
+				let count = map.get(el) || 0
+				map.set(el, count + 1)
+			}
+			for (const el of history) {
+				let count = map.get(el) || 0
+				map.set(el, count + 1)
+			}
+
+			let twoWorkshop = 0
+			for (const el of map) {
+				if (el[1] === 2)
+					twoWorkshop++
+			}
+			console.log(`History & math visit ${twoWorkshop} students`);
+
+			let mathWorkshop = new Set(math).size
+			console.log(`Math visit ${mathWorkshop}`);
+			let historyWorkshop = new Set(history).size
+			console.log(`Hystory visit ${historyWorkshop}`);
+		}
+
+		studentWorkshop(mathWorkshop, historyWorkshop)
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<body>
+	<h1>Задача №2</h1>
+
+	<p>
+		2. Дано Shop -- клас, що містить список товарів (масив об’єктів класу Product (назва, ціна, <br>
+		кількість одиниць). Додати можливість ітератора до класу Shop, щоб при інтегруванні <br>
+		для кожного елемента виводився рядок «товар-загальна вартість»
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div id="product"></div>
+
+	<script>
+
+		class Product {
+			constructor(title, price, numberUnits) {
+				this.title = title
+				this.price = price
+				this.numberUnits = numberUnits
+			}
+			[Symbol.toPrimitive](hint) {
+				switch (hint) {
+					case 'number':
+						return this.price
+					case 'string':
+						return `${this.title}: ${this.price * this.numberUnits}грн.`
+					default:
+						return this.title
+				}
+			}
+		}
+
+		class Shop {
+			constructor(groceryList) {
+				this.groceryList = groceryList
+				this.curIndex = 0
+			}
+			[Symbol.iterator]() {
+				this.curIndex = 0
+				return this
+			}
+			next() {
+				if (this.curIndex < this.groceryList.length) {
+					const curProduct = this.groceryList[this.curIndex]
+					this.curIndex++
+					return { done: false, value: String(curProduct) }
+				} else return { done: true }
+			}
+		}
+
+		const groceryList = [
+			new Product('Сосиски', 140, 4),
+			new Product('Ковбаса', 180, 8),
+			new Product('Хамон', 290, 2),
+			new Product('Сардельки', 150, 10),
+		]
+
+		const shop = new Shop(groceryList)
+
+		for (const grocery of shop) {
+			console.log(grocery)
+		}
+
+		const arrGrocery = [...shop]
+		product.innerText = ` ${arrGrocery},`
+
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Створити клас Client. На основі цього класу створити клас GoldenClient. <br>
+		Створити клас Bank, у якому зберігається масив клієнтів. Виконати такі операції: <br>
+		• Вивести усіх простих клієнтів; <br>
+		• Вивести усіх клієнтів GoldenClient; <br>
+		• Знати сумарну кількість грошей на рахунку;
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div class="bank"></div>
+
+	<script>
+
+		class Client {
+			constructor(userId, userName, userAccount) {
+				this.userId = userId
+				this.userName = userName
+				this.userAccount = userAccount
+			};
+			addingToBalance(value) {
+				this.userAccount += value
+			};
+			withdrawalMoneyBalance(value) {
+				if ((this.userAccount - value) < 0) alert('На рахунку недостатньо грошей')
+				else this.userAccount -= value
+			}
+			toString() {
+				return `<br>Client: <span>${this.userName}</span>, грошей на рахунку: <span>${this.userAccount}€</span>`
+			}
+		}
+
+		const clientList = []
+
+		let ordinaryClientOne = new Client(2883, 'Viktor Svertoka', 333333)
+		clientList.push(ordinaryClientOne)
+
+		let ordinaryClientTwo = new Client(8488, 'Sir Pancake', 222222)
+		clientList.push(ordinaryClientTwo)
+
+		let ordinaryClientThree = new Client(2521, 'Pavlo Palahniuk', 111111)
+		clientList.push(ordinaryClientThree)
+
+		ordinaryClientOne.toString()
+
+		//------
+
+		class GoldenClient extends Client {
+			constructor(userId, userName, userAccount) {
+				super(userId, userName, userAccount)
+			}
+			toString() {
+				return `<br>GoldenClient: <span>${this.userName}</span>, грошей на рахунку: <span>${this.userAccount}€</span>`
+			}
+		}
+
+		let goldenClientOne = new GoldenClient(1397, 'Anna Lovatto', 555555)
+		clientList.push(goldenClientOne)
+
+		let goldenClientTwo = new GoldenClient(3099, 'Daria Gavrish', 444444)
+		clientList.push(goldenClientTwo)
+
+		let goldenClientThree = new GoldenClient(2219, 'Marta Dutko', 333333)
+		clientList.push(goldenClientThree)
+
+		//------
+
+		class Bank {
+			constructor(userList) {
+				this.userList = userList
+			}
+
+			getClientCategory() {
+				let arrayOne = []
+				let arrayTwo = []
+				for (const client of this.userList) {
+					if (client instanceof GoldenClient) arrayOne.push(client)
+					else arrayTwo.push(client)
+				}
+				return { arrayOne, arrayTwo }
+			}
+
+			getValueTotal() {
+				let total = 0
+				for (const client of this.userList) {
+					total += client.userAccount
+				}
+				return total
+			}
+
+			render(targetSelector) {
+				const mainBlock = document.querySelector(targetSelector)
+				const mainList = this.getClientCategory()
+
+				const ordinaryClient = document.createElement('p')
+				ordinaryClient.innerHTML = mainList.arrayTwo
+				mainBlock.append(ordinaryClient)
+
+				const goldenClient = document.createElement('p')
+				goldenClient.innerHTML = mainList.arrayOne
+				mainBlock.append(goldenClient)
+
+				const totalVal = document.createElement('p')
+				totalVal.innerHTML = `<b>Сумарна кількість грошей на рахунку:</b> <span>${this.getValueTotal()} €</span>`
+				mainBlock.append(totalVal)
+			}
+		}
+
+		let bank = new Bank(clientList)
+		bank.render('.bank')
+
+	</script>
+
+</body>
+
+</html>

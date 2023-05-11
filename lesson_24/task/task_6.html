@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_6</title>
+</head>
+
+<body>
+	<h1>Задача №6</h1>
+
+	<p>
+		6. Дано масив книг (назва, рік видання, автор). Підрахувати кількість книг для кожного автора.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		let arrBook = [
+			{
+				name: 'Book1',
+				year: 2012,
+				autor: 'Yuriy Vinnychuk'
+			},
+			{
+				name: 'Book2',
+				year: 2011,
+				autor: 'Yuriy Vinnychuk'
+			},
+			{
+				name: 'Book3',
+				year: 2021,
+				autor: 'Lina Kostenko'
+			},
+			{
+				name: 'Book4',
+				year: 2013,
+				autor: 'Lina Kostenko'
+			},
+			{
+				name: 'Book5',
+				year: 2023,
+				autor: 'Maria Mathios'
+			},
+		]
+
+		function getNumberBooks(arr) {
+			let map = new Map()
+			for (const el of arrBook) {
+				let cout = 1
+				if (!map.has(el.autor)) {
+					map.set(el.autor, cout)
+				}
+				else {
+					map.set(el.autor, ++cout)
+				}
+			}
+			return map
+		}
+		console.log(getNumberBooks(arrBook))
+
+	</script>
+</body>
+
+</html>

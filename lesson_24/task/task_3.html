@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_3</title>
+</head>
+
+<body>
+	<h1>Задача №3</h1>
+
+	<p>
+		3. Після кожного значення року після 2000 року додати «р»<br>
+		«Я народився 1982, а в школі пішов 1989» => «Я народився 1982р, а в школі пішов 1989р»
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		let year = "Я народився 1982, а в школі пішов 1989"
+
+		ex = /(.*?)(\d{4})(.*?)(\d{4})/
+		year = year.replace(ex, "$1$2р$3$4р")
+		document.write(`<b>Новий формат додати:</b><br> ${year}`)
+
+	</script>
+</body>
+
+</html>

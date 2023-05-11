@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_7</title>
+</head>
+
+<body>
+	<h1>Задача №7</h1>
+
+	<p>
+		7. Дано інформацію про відвідувачів деякого сайту (для кожного відвідувача зберігається логін). <br>
+		Підрахувати для кожного клієнта кількість відвідувань.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		let userInfo = [
+			{
+				user: 'Yevhen',
+				login: '3515',
+			},
+			{
+				user: 'Yevhen',
+				login: '3515',
+			},
+			{
+				user: 'Andrew',
+				login: '9017',
+			},
+			{
+				user: 'Andrew',
+				login: '9017',
+			},
+			{
+				user: 'Nikita',
+				login: '6677',
+			},
+			{
+				user: 'Viktor',
+				login: '2883',
+			},
+			{
+				user: 'Viktor',
+				login: '2883',
+			},
+			{
+				user: 'Viktor',
+				login: '2883',
+			},
+			{
+				user: 'Viktor',
+				login: '2883',
+			}
+		]
+
+		function getVisitesUser(arr) {
+			let map = new Map()
+			for (const el of arr) {
+				let countValues = map.get(el.login) || 0
+				map.set(el.login, countValues + 1)
+			}
+			return map
+		}
+		console.log(getVisitesUser(userInfo));
+
+	</script>
+</body>
+
+</html>

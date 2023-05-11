@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_2</title>
+</head>
+
+<style>
+	img {
+		max-width: 160px;
+	}
+
+	img:first-child {
+		min-width: 400px;
+	}
+</style>
+
+<body>
+	<h1>Задача №2</h1>
+
+	<p>
+		2. Розробити Класи:<br>
+		• House <br>
+		• Dog <br>
+		• Bird <br>
+		Подумайте яким має бути спільний клас предок.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<div class="task-main"></div>
+
+	<script>
+
+		// спільний клас предок FieldForCharacters
+
+		class FieldForCharacters {
+			constructor(coordinateX, coordinateY, imgLink, intervalTime) {
+				this.coordinateX = coordinateX
+				this.coordinateY = coordinateY
+				this.imgLink = imgLink
+				this.intervalTime = intervalTime
+			}
+			render(targetSelector) {
+				const mainBlock = document.querySelector(targetSelector)
+				mainBlock.style.position = 'relative'
+				this.img = document.createElement('img')
+				this.img.src = this.imgLink
+				this.img.style.position = 'absolute'
+				this.img.style.left = this.coordinateX + 'px'
+				this.img.style.top = this.coordinateY + 'px'
+				mainBlock.append(this.img)
+			}
+		}
+
+		// House
+
+		class House extends FieldForCharacters {
+			transformScale() {
+				setInterval((() => {
+					this.img.style.transform = 'scale(1.4)'
+				}), this.intervalTime * 1500
+				)
+				this.defaultData()
+			}
+			defaultData() {
+				setInterval((() => {
+					this.img.style.transform = 'scale(1.09)'
+				}), (this.intervalTime + 2) * 1000
+				)
+			}
+		}
+		let house = new House(800, 150, 'img/house.png', 1)
+		house.render('.task-main')
+		house.transformScale()
+
+		// Dog
+
+		class Dog extends FieldForCharacters {
+			transformMove() {
+				setInterval((() => {
+					this.img.style.top = parseInt(this.img.style.top) + 8 + 'px'
+				}), this.intervalTime * 300
+				)
+			}
+		}
+		let dog = new Dog(400, 100, 'img/dog.png', 2.5)
+		dog.render('.task-main')
+		dog.transformMove()
+
+		// Bird
+
+		class Bird extends FieldForCharacters {
+			getRandomNum(min, max) {
+				return min + Math.floor(Math.random() * (max - min + 1))
+			}
+			transformPosition() {
+				setInterval((() => {
+					this.img.style.top = parseInt(this.img.style.top) - this.getRandomNum(0, 2) + 'px'
+					this.img.style.left = parseInt(this.img.style.left) + this.getRandomNum(0, 2) + 'px'
+					this.img.style.top = parseInt(this.img.style.top) + this.getRandomNum(0, 2) + 'px'
+
+				}), this.intervalTime * 110)
+			}
+		}
+		let bird = new Bird(10, 50, 'img/bird.png', 1)
+		bird.render('.task-main')
+		bird.transformPosition()
+
+	</script>
+</body>
+
+
+</html>

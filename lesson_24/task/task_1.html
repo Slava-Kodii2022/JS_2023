@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_1</title>
+</head>
+
+<body>
+	<h1>Задача №1</h1>
+
+	<p>
+		1. Дано масив рядкових представлень чисел (тобто масив чисел у лапках (string). <br>
+		З використанням перевірки за допомогою регулярних виразів і груп підрахувати кількість тих, <br>
+		у яких перша і остання літери однакові.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		let testArr = ['5355', '838', '175', '889', '755', '505', '81358', '155', '8928', '462']
+		document.write(
+			`<b>Дано масив чисел:</b><br> ${testArr}<br>`
+		)
+
+		let date = 0
+		for (const el of testArr) {
+			if (el.match(/^(\d{1}).*?(\1)$/))
+				date++
+		}
+		document.write(`<b>Кількість у яких початок і кінець однакові:</b><br> ${date}`)
+
+	</script>
+
+</body>
+
+</html>

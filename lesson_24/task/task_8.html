@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_8</title>
+</head>
+
+<body>
+	<h1>Задача №8</h1>
+
+	<p>
+		8. Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних факультетів, та кількість <br>
+		студентів кожного з курсів.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+	<script>
+
+		let arrStudent = [
+			{
+				fullName: 'Kate Voronenko',
+				course: 1,
+				faculty: 'faculty1'
+			},
+			{
+				fullName: 'Kosmos Kostik',
+				course: 1,
+				faculty: 'faculty2'
+			},
+			{
+				fullName: 'Leychenko Maxim',
+				course: 2,
+				faculty: 'faculty2'
+			},
+			{
+				fullName: 'Maksym Zhuk',
+				course: 2,
+				faculty: 'faculty1'
+			},
+			{
+				fullName: 'Oleksandr Kyrylenko',
+				course: 2,
+				faculty: 'faculty3'
+			},
+			{
+				fullName: 'Viktor Petsko',
+				course: 4,
+				faculty: 'faculty1'
+			},
+			{
+				fullName: 'Viktor Svertoka',
+				course: 4,
+				faculty: 'faculty3'
+			}
+		]
+
+		function getCountFacultets(arr) {
+			let map = new Map()
+			let count = 1
+			for (const el of arr) {
+				if (!map.has(el.faculty))
+					map.set(el.faculty, count)
+
+				else
+					map.set(el.faculty, ++count)
+
+			}
+			return map
+		}
+
+		console.log(getCountFacultets(arrStudent));
+
+		function getCountCourse(arr) {
+			let map = new Map()
+			for (const el of arr) {
+				let count = 1
+				if (!map.has(el.course))
+					map.set(el.course, count)
+				else
+					map.set(el.course, ++count)
+			}
+			return map
+		}
+		console.log(getCountCourse(arrStudent));
+
+	</script>
+</body>
+
+</html>

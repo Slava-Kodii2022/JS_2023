@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task_5</title>
+</head>
+
+<body>
+	<h1>Задача №5</h1>
+
+	<p>
+		5. Дано список з віком учнів. Підрахувати скільки разів кожне значення зустрічається у списку і максимальне.
+	</p>
+
+	<h2>Розв`язок:</h2>
+
+
+	<script>
+
+		let arrUser = [
+			{
+				name: 'Olesia',
+				age: 18
+			},
+			{
+				name: 'Mariia',
+				age: 19
+			},
+			{
+				name: 'Anna',
+				age: 17
+			},
+			{
+				name: 'Daria',
+				age: 16
+			},
+			{
+				name: 'Liza',
+				age: 20
+			},
+			{
+				name: 'Maria',
+				age: 19
+			}
+		]
+
+		function getRepeatValue(arr) {
+			let map = new Map()
+			for (const el of arrUser) {
+				let ageCount = 1
+				if (!map.has(el.age)) {
+					map.set(el.age, ageCount)
+				}
+				else {
+					map.set(el.age, ++ageCount)
+				}
+			}
+			return map
+		}
+		let map = getRepeatValue(arrUser)
+		console.log(map)
+
+		function getMaxValue(map) {
+			let maxValue = 0
+			let keys = map.keys()
+			for (const el of keys) {
+				if (el > maxValue)
+					maxValue = el
+			}
+			return maxValue
+		}
+		console.log(getMaxValue(map))
+
+	</script>
+
+</body>
+
+</html>
